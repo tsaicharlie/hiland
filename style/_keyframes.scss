@@ -1,0 +1,199 @@
+//keyframes
+
+@keyframes btnAni {
+  20% {
+    background-color: rgba($mainColor, 0.3);
+  }
+
+  100% {
+    transform: scale(1.3);
+    background-color: transparent;
+  }
+}
+
+@keyframes imgLoading {
+  0% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+// text slide animation
+@keyframes slideLeftAnimation {
+  0% {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// text slide down animation
+@keyframes slideDownAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// text slide up animation
+@keyframes slideUpAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes aniSlideLeft {
+  0% {
+    transform: translateX(10px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes aniSlideDown {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+// banner scrollDown animation
+@keyframes bannerScrollAnimation {
+  0% {
+    height: 0;
+  }
+
+  50% {
+    height: 100%;
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes scrollHorizontal {
+  100% {
+    transform: translateX(-30px);
+    opacity: 0;
+  }
+}
+@keyframes scrollVertical {
+  100% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+}
+
+@keyframes loadingAni {
+  0% {
+    opacity: 0;
+    // transform: translateY(-15%);
+  }
+  100% {
+    opacity: 1;
+    // transform: translateX(0);
+  }
+}
+
+// esg新增start
+@keyframes textSlideRightAnimation {
+  0% {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes textSlideDownAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+// esg新增end
+
+@keyframes brickAni {
+  0% {
+    opacity: 1;
+    width: calc(60% + 60px);
+    height: calc(60% + 60px);
+  }
+
+  100% {
+    opacity: 0;
+    width: calc(100% + 60px);
+    height: calc(100% + 60px);
+  }
+}
+
+@keyframes brickAniactive {
+  0% {
+    opacity: 1;
+    width: calc(50% + 60px);
+    height: calc(50% + 60px);
+  }
+
+  100% {
+    opacity: 0;
+    width: calc(100% + 60px);
+    height: calc(100% + 60px);
+  }
+}
+
+@keyframes brickhoverAni {
+  0% {
+    opacity: 1;
+    width: calc(60% + 60px);
+    height: calc(60% + 60px);
+  }
+
+  100% {
+    opacity: 0;
+    width: calc(100% + 60px);
+    height: calc(100% + 60px);
+  }
+}

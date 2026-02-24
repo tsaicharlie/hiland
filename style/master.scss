@@ -1,0 +1,6416 @@
+@charset "utf-8";
+@import "setting";
+@import "keyframes";
+
+// $mainColor: #dca545;
+
+body {
+  background-color: #fff;
+  font-size: $textSize;
+  font-family: $mainFont;
+  @extend %ts;
+  // opacity: 0;
+
+  &.fade-in {
+    opacity: 1;
+  }
+
+  &.fade-out {
+    opacity: 0;
+  }
+
+  @include media($breakpointMedium) {
+    font-size: $textSizeMedium;
+  }
+
+  @include media($breakpointSmall) {
+    font-size: $textSizeSmall;
+  }
+
+  &.overflow,
+  &.popwinOverflow,
+  &.loadingOverflow {
+    overflow: hidden;
+  }
+
+  &.errorPage {
+    .mainArea {
+      width: 100%;
+      height: calc(100vh - 300px);
+      min-height: 500px;
+      align-items: center;
+      display: flex;
+      justify-content: center;
+
+      .top {
+        max-width: 380px;
+        color: $mainColor;
+        font-size: 28px;
+        font-weight: 500;
+        line-height: 1.5;
+        margin: 0 auto;
+      }
+
+      @include media($breakpointSmall) {
+        height: 50vh;
+        min-height: 350px;
+
+        .top {
+          font-size: 24px;
+        }
+      }
+    }
+  }
+
+  &:not(.WebSiteHome) {
+    .mainArea {
+      padding-top: 30px;
+
+      .titleBox {
+        display: none;
+        margin-top: 20px;
+
+        @include media(768) {
+          margin-top: 100px;
+        }
+
+        &.show {
+          display: block;
+        }
+      }
+
+      .wrap {
+        max-width: 1230px;
+
+        @include media(1700) {
+          padding: 0;
+        }
+
+        @include media(1400) {
+          padding: 0 75px;
+        }
+
+        @include media(1180) {
+          padding: 0 50px;
+        }
+
+        @include media(768) {
+          padding: 0 30px;
+        }
+
+        @include media(480) {
+          padding: 0 20px;
+        }
+      }
+    }
+
+    .bannerArea {
+      position: relative;
+
+      .bannerItem {
+        .Txt {
+          position: absolute;
+          align-items: flex-start;
+          justify-content: flex-end;
+          max-width: 1230px;
+          bottom: 32%;
+
+          @include media(1700) {
+            padding: 0 0px;
+          }
+
+          @include media(1400) {
+            padding: 0 75px;
+          }
+
+          @include media(1280) {
+            bottom: 20%;
+          }
+
+          @include media(1180) {
+            padding: 0 50px;
+          }
+
+          @include media(768) {
+            padding: 0 30px;
+            bottom: 0;
+            justify-content: center;
+          }
+
+          @include media(480) {
+            padding: 0 20px;
+          }
+        }
+
+        .mask {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          opacity: 1;
+          z-index: 1;
+        }
+      }
+
+      .titleBox {
+        margin-bottom: 0;
+
+        .title {
+          font-size: 58px;
+          color: #fff;
+          position: relative;
+
+          @include media(1440) {
+            font-size: 50px;
+          }
+
+          @include media(1280) {
+            font-size: 40px;
+          }
+
+          @include media(1024) {
+            font-size: 30px;
+          }
+
+          @include media(820) {
+            font-size: 24px;
+          }
+
+          @include media(640) {
+            font-size: 36px;
+          }
+
+          @include media(400) {
+            font-size: 28px;
+          }
+
+          &::after {
+            content: "";
+            position: absolute;
+            width: 40px;
+            height: 4px;
+            background-color: #fff;
+            bottom: -50px;
+            left: 2px;
+
+            @include media(1024) {
+              bottom: -30px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+address {
+  font-style: normal;
+}
+
+a {
+  color: $linkColor;
+  cursor: pointer;
+  @extend %ts;
+
+  @include hover {
+    color: $linkHoverColor;
+  }
+}
+
+input[type="text"],
+input[type="password"],
+textarea,
+button {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  font-size: 16px;
+  font-family: $secondFont;
+  outline: none;
+  padding: 0;
+  margin: 0;
+}
+
+button {
+  cursor: pointer;
+  @extend %ts;
+}
+
+select {
+  cursor: pointer;
+}
+
+textarea {
+  resize: vertical;
+}
+
+input[type=file],
+/* FF, IE7+, chrome (except button) */
+input[type=file]::-webkit-file-upload-button {
+  /* chromes and blink button */
+  cursor: pointer;
+}
+
+.Img {
+  img {
+    height: auto;
+  }
+}
+
+//隱藏 開影音,相簿
+div.titan {
+  display: none;
+}
+
+[class*="col-"] {
+  float: left;
+}
+
+.col- {
+  &1 {
+    width: 100%;
+  }
+
+  &2 {
+    width: 50%;
+  }
+
+  &3 {
+    width: 33.33%;
+  }
+
+  &4 {
+    width: 25%;
+  }
+
+  &5 {
+    width: 20%;
+  }
+
+  @include media(480) {
+    &1,
+    &2,
+    &3,
+    &4,
+    &5 {
+      float: none;
+      width: 100%;
+    }
+  }
+}
+
+/* 共用的樣式 */
+
+// titleBox START
+.titleBox {
+  margin-bottom: 40px;
+  position: relative;
+  text-align: left;
+
+  &.textLeft {
+    text-align: left;
+  }
+
+  .decoTitle {
+    color: $secondColor;
+    font-size: $decoTitleSize;
+    line-height: normal;
+    padding-bottom: 4px;
+
+    @include media($breakpointMedium) {
+      font-size: $decoTitleSizeMedium;
+    }
+
+    @include media($breakpointSmall) {
+      font-size: $decoTitleSizeSmall;
+      padding-bottom: 0;
+    }
+  }
+
+  .title {
+    color: #456858;
+    font-size: 50px;
+    letter-spacing: 0.25px;
+    font-weight: 700;
+
+    @include media(1400) {
+      font-size: 45px;
+    }
+
+    @include media(600) {
+      font-size: 28px;
+    }
+
+    @include media(380) {
+      font-size: 22px;
+    }
+  }
+
+  .subtitle {
+    color: #000;
+    font-size: 34px;
+    font-weight: 400;
+    line-height: 1.44;
+    margin-top: 30px;
+
+    @include media(1400) {
+      font-size: 30px;
+      margin-top: 30px;
+    }
+
+    @include media(600) {
+      font-size: 20px;
+      margin-top: 20px;
+    }
+
+    @include media(380) {
+      font-size: 18px;
+    }
+  }
+
+  .text {
+    color: #5b5b5b;
+    font-size: 16px;
+    line-height: 1.6875;
+    margin-top: 20px;
+    letter-spacing: 0.08px;
+
+    @include media(1400) {
+      font-size: 15px;
+      margin-top: 20px;
+    }
+
+    @include media(380) {
+      font-size: 14px;
+    }
+  }
+}
+
+// titleBox END
+.btnBox {
+  margin-top: 20px;
+
+  &.flex {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-left: -6px;
+    margin-right: -6px;
+
+    &.left {
+      justify-content: flex-start;
+    }
+
+    &.right {
+      justify-content: flex-end;
+    }
+
+    .btn {
+      min-width: auto;
+      max-width: 200px;
+      flex: 1;
+      margin: 0 6px;
+    }
+  }
+
+  &.single {
+    &.center {
+      text-align: center;
+    }
+
+    .btn {
+      width: 100%;
+      max-width: 200px;
+    }
+
+    @include media(480) {
+      .btn {
+        max-width: 100%;
+      }
+    }
+  }
+
+  &.full {
+    .btn {
+      width: 100%;
+    }
+  }
+
+  .btn {
+    min-width: 167px;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.075px;
+    line-height: 1.4;
+    padding: 15px 10px 15px 35px;
+    position: relative;
+    text-align: left;
+    z-index: 1;
+    @extend %ts;
+    width: 194px;
+    color: #fff;
+    overflow: hidden;
+
+    .hover {
+      position: absolute;
+      width: calc(100% + 2px);
+      height: 100%;
+      right: -1px;
+      top: -1px;
+      background-color: #456858;
+      z-index: -1;
+      clip-path: inset(0 0 100% 0);
+      @extend %ts;
+    }
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      width: 6px;
+      height: 6px;
+      background-color: #fff;
+      border-radius: 50%;
+      @extend %ts;
+      transform: translate(0, -50%);
+      z-index: 1;
+    }
+
+    &::after {
+      right: 30px;
+    }
+
+    .btnText {
+      display: inline-block;
+    }
+
+    @include media($breakpointSmall) {
+      width: 175px;
+      padding: 11px 10px 11px 20px;
+      font-weight: 500;
+    }
+
+    @include hover {
+      &::before {
+        top: 35%;
+        right: 25px;
+        background-color: $mainColor;
+        transform: translate(0, -50%);
+      }
+
+      &::after {
+        top: 60%;
+        right: 25px;
+        background-color: #456858;
+        transform: translate(0, -50%);
+      }
+
+      .hover {
+        clip-path: inset(0 0 50% 0);
+      }
+    }
+
+    &.small {
+      font-size: 13px;
+      padding: 10px 15px;
+    }
+
+    //slide animation
+    &.animation {
+      overflow: hidden;
+
+      &::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: -1;
+        width: 0;
+        height: 100%;
+        background-color: $btnHoverBg;
+        @extend %ts;
+      }
+
+      @include hover {
+        &::after {
+          width: 100%;
+          left: 0;
+          right: auto;
+        }
+      }
+    }
+
+    // color
+    &.bgMain {
+      background: linear-gradient(
+        90deg,
+        rgba(199, 144, 53, 1) 0%,
+        rgba(243, 189, 87, 1) 100%
+      );
+      // border: 1px solid $mainColor;
+      color: #fff;
+      @extend %ts;
+
+      @include hover {
+        // color: #41544b;
+        // background: linear-gradient(180deg,  #456858 0%,$mainColor 100%,);
+        // background-size: 200% 200%;
+        // &:not(.animation) {
+        //     background-color: #fff;
+        // }
+      }
+    }
+
+    &.bgSecond {
+      background-color: $secondColor;
+      border: 1px solid $secondColor;
+      color: #fff;
+
+      @include hover {
+        color: $secondColor;
+
+        &:not(.animation) {
+          background-color: #fff;
+        }
+      }
+    }
+
+    &.colorMain {
+      background-color: #fff;
+
+      color: $mainColor;
+
+      &.animation {
+        &::after {
+          background-color: $mainColor;
+        }
+      }
+
+      @include hover {
+        color: #fff;
+
+        &:not(.animation) {
+          background-color: $mainColor;
+        }
+      }
+    }
+
+    &.colorSecond {
+      background-color: #fff;
+      border: 1px solid $secondColor;
+      color: $secondColor;
+
+      &.animation {
+        &::after {
+          background-color: $secondColor;
+        }
+      }
+
+      @include hover {
+        color: #fff;
+
+        &:not(.animation) {
+          background-color: $secondColor;
+        }
+      }
+    }
+
+    // border-radius
+    &.rounded {
+      border-radius: 24.5px;
+    }
+
+    &.roundedSlightly {
+      border-radius: 4px;
+    }
+
+    &.inquiryBtn {
+      &::before,
+      &::after {
+        display: none;
+      }
+
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      @extend %ts;
+
+      svg {
+        color: transparent;
+        @extend %ts;
+      }
+
+      @include hover {
+        color: #333;
+
+        svg {
+          color: #fff;
+        }
+      }
+    }
+
+    &.Like {
+      svg {
+        color: #fff;
+      }
+    }
+  }
+}
+
+/* 共用的樣式 END */
+
+.outerWrap {
+  max-width: 1920px;
+  margin: 0 auto;
+
+  position: relative;
+
+  @include media($breakpointMedium) {
+    // padding-bottom: 70px;
+  }
+}
+
+.wrap {
+  @include wrap();
+
+  // @include media (1181, 1536) {
+  //     max-width: 90vw;
+  // }
+}
+
+/*module*/
+.moduleBox {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1005;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition-property: top, opacity, visibility;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+
+    .moduleWrap {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+  }
+
+  .moduleWrap {
+    position: relative;
+    width: 100%;
+    max-width: 960px;
+    background-color: #fff;
+    pointer-events: none;
+    padding-top: 60px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.5s;
+  }
+
+  .moduleTitle {
+    color: #000;
+    font-weight: 400;
+    font-size: 24px;
+    letter-spacing: 0.05em;
+    padding-bottom: 10px;
+    text-align: center;
+  }
+
+  .moduleContent {
+    width: 100%;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    @include scrollBar(5px, 5px, #f1f1f1, $mainColor);
+  }
+
+  .moduleClose {
+    width: 50px;
+    height: 50px;
+    background: none;
+    background-color: $mainColor;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    @extend %ts;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin-left: -15px;
+      margin-top: -0.5px;
+      width: 30px;
+      height: 1px;
+      background-color: #fff;
+    }
+
+    &::before {
+      transform: rotate(45deg);
+    }
+
+    &::after {
+      transform: rotate(-45deg);
+    }
+
+    @include hover {
+      background-color: #000;
+    }
+  }
+
+  //隱私權
+  &.privacy {
+    .moduleWrap {
+      max-width: 700px;
+      padding-top: 50px;
+      position: relative;
+      z-index: 1004;
+    }
+
+    .moduleTitle {
+      font-size: 20px;
+      font-weight: 600;
+      padding-bottom: 15px;
+      text-align: left;
+
+      @include media(640) {
+        font-size: 18px;
+        padding-bottom: 10px;
+      }
+    }
+
+    .moduleContent {
+      max-height: calc(90vh - 50px);
+      overflow-y: auto;
+
+      .btnBox {
+        @include media(480) {
+          flex-direction: column;
+          gap: 10px;
+
+          .btn {
+            width: 100%;
+            max-width: 100%;
+          }
+        }
+      }
+    }
+
+    .settingBox {
+      & + .settingBox {
+        margin-top: 25px;
+      }
+    }
+
+    .text {
+      font-size: 15px;
+      line-height: 1.35;
+
+      @include media(640) {
+        font-size: 14px;
+      }
+    }
+
+    .btnBox {
+      justify-content: space-between;
+      margin-top: 20px;
+
+      .btn {
+        &:not(.textLink) {
+          padding: 10px 15px;
+        }
+
+        &.textLink {
+          display: inline-block;
+          font-size: 15px;
+          font-weight: 500;
+          position: relative;
+
+          &::before {
+            content: "";
+            width: 0;
+            height: 1px;
+            background-color: $mainColor;
+            position: absolute;
+            bottom: -3px;
+            left: 50%;
+            @extend %ts;
+          }
+
+          @include hover {
+            &::before {
+              width: 100%;
+              left: 0;
+            }
+          }
+        }
+      }
+    }
+
+    .customList {
+      .customItem {
+        &:not(:last-child) {
+          padding-bottom: 10px;
+        }
+      }
+
+      .topBox {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        position: relative;
+
+        &::before {
+          content: "";
+          width: 9px;
+          height: 9px;
+          border-right: 1px solid #000;
+          border-bottom: 1px solid #000;
+          pointer-events: none;
+          position: absolute;
+          top: 50%;
+          right: 0;
+          z-index: 1;
+          transform: translateY(-80%) rotate(-45deg);
+          @extend %ts;
+        }
+
+        &.open {
+          &::before {
+            transform: translateY(-100%) rotate(45deg);
+          }
+        }
+
+        .subtitle {
+          width: 100%;
+          cursor: pointer;
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 1;
+          padding: 10px 20px 10px 0;
+          @extend %ts;
+        }
+
+        .trigger {
+          font-size: 15px;
+          line-height: 1;
+          position: absolute;
+          top: 50%;
+          right: 20px;
+          z-index: 2;
+          transform: translateY(-50%);
+
+          .alwaysOn {
+            color: $mainColor;
+            font-size: 15px;
+            font-weight: 500;
+            display: inline-block;
+            line-height: 1.35;
+            padding-bottom: 3px;
+          }
+
+          label {
+            cursor: pointer;
+            display: inline-block;
+
+            &[for="cookie_necessary"] {
+              cursor: not-allowed;
+            }
+
+            input[type="checkbox"] {
+              appearance: none;
+              border: none;
+              outline: none;
+              opacity: 0;
+              @include cover;
+
+              &:checked {
+                & + span {
+                  background-color: lighten($mainColor, 18%);
+
+                  &::before {
+                    background-color: lighten($mainColor, 5%);
+                    transform: translate(75%, -50%);
+                  }
+                }
+              }
+            }
+
+            span {
+              width: 38px;
+              height: 14px;
+              border-radius: 30px;
+              background-color: #d9d9d9;
+              display: block;
+              margin-left: auto;
+              position: relative;
+              @extend %ts;
+
+              &::before {
+                content: "";
+                width: 21px;
+                height: 21px;
+                border-radius: 50%;
+                background-color: #b5b5b5;
+                position: absolute;
+                top: 50%;
+                left: 0;
+                z-index: 1;
+                transform: translateY(-50%);
+                @extend %ts;
+              }
+            }
+          }
+        }
+
+        @include hover {
+          .subtitle {
+            color: $mainColor;
+          }
+        }
+
+        @include media(640) {
+          margin-bottom: 5px;
+        }
+      }
+
+      .text {
+        background-color: #e1e1e1;
+        padding: 18px 15px;
+
+        @include media(640) {
+          padding: 15px 12px;
+        }
+      }
+    }
+  }
+
+  /*洽詢車&購物車*/
+  &.cart {
+    .moduleWrap {
+      max-width: 480px;
+    }
+
+    .text {
+      color: #373737;
+      font-size: 14px;
+      letter-spacing: 0.05em;
+      text-align: center;
+
+      b {
+        padding-left: 4px;
+        padding-right: 4px;
+        font-weight: 400;
+        font-size: 18px;
+        color: $mainColor;
+      }
+    }
+
+    .cartBox {
+      max-height: 50vh;
+      border-top: 2px solid $mainColor;
+      border-bottom: 2px solid $lineColor;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      overflow-y: auto;
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+
+    .cartList {
+      .cartItem {
+        width: 100%;
+        display: flex;
+
+        &:not(:first-child) {
+          border-top: 1px solid $lineColor;
+          margin-top: 12px;
+          padding-top: 12px;
+        }
+      }
+
+      .Img {
+        width: 100px;
+        padding-right: 10px;
+
+        img {
+          @include img100;
+        }
+      }
+
+      .Txt {
+        min-width: 0;
+        flex: 1;
+        padding-right: 10px;
+        position: relative;
+      }
+
+      .title {
+        min-width: 0;
+        flex: 1;
+        padding-right: 5px;
+
+        a {
+          color: #000;
+          display: block;
+          font-size: 15px;
+          font-weight: 400;
+          @include oneLine;
+
+          @include hover {
+            color: $mainColor;
+          }
+        }
+      }
+
+      .spec {
+        color: #6a6a6a;
+        font-size: 14px;
+        margin-bottom: 3px;
+      }
+
+      .num {
+        color: #6a6a6a;
+        font-size: 14px;
+        line-height: 1;
+      }
+
+      .del {
+        width: 35px;
+        height: 35px;
+        border: none;
+        background-color: #eee;
+        border-radius: 50%;
+        color: #5f5f5f;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @extend %ts;
+
+        @include hover {
+          background-color: $mainColor;
+          color: #fff;
+        }
+
+        svg {
+          width: 15px;
+          height: 18px;
+          display: inline-block;
+          vertical-align: middle;
+        }
+      }
+
+      @include media(400) {
+        .Img {
+          width: 85px;
+        }
+      }
+    }
+  }
+
+  /*訂單查詢*/
+  &.orderCheck {
+    .moduleWrap {
+      max-width: 480px;
+    }
+
+    .formBox {
+      max-height: 50vh;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+  }
+
+  /*搜尋*/
+  &.search {
+    .moduleWrap {
+      max-width: 480px;
+    }
+
+    .moduleContent {
+      max-height: calc(90vh - 50px);
+      overflow-y: auto;
+    }
+
+    .searchBox {
+      margin: 30px 0;
+      position: relative;
+
+      input[type="text"] {
+        width: 100%;
+        display: block;
+        border: 1px solid #e1e1e1;
+        padding: 12px 55px 12px 15px;
+      }
+
+      button {
+        width: 50px;
+        height: 50px;
+        background-color: $mainColor;
+        color: #fff;
+        display: block;
+        font-size: 16px;
+        flex-shrink: 0;
+        line-height: 50px;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        z-index: 1;
+        transform: translateY(-50%);
+        text-align: center;
+
+        @include hover {
+          background-color: #000;
+        }
+      }
+    }
+  }
+
+  /*提醒使用cookie彈窗*/
+  &.cookie {
+    .moduleWrap {
+      max-width: 480px;
+    }
+
+    .text {
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      line-height: 1.6;
+    }
+  }
+}
+
+.moduleMask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1003;
+  background-color: $maskColor;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  @extend %ts;
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+}
+
+/*loading*/
+
+.loadingArea {
+  width: 100%;
+  height: 100vh;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  opacity: 1;
+  transition: all 0.7s ease-in-out;
+  perspective: 800px;
+  background-color: #faebdb;
+
+  .lineBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+
+    .line {
+      width: 2px;
+      height: 10%;
+      animation: line-in 1.5s cubic-bezier(0.2, 0, 0.3, 1) 0.5s forwards;
+      position: relative;
+      @extend %ts;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, 0);
+        width: 2px;
+        height: 100%;
+        background-color: rgba($mainColor, 0.8);
+      }
+    }
+  }
+
+  @keyframes line-in {
+    0% {
+      opacity: 1;
+      height: 10%;
+      width: 2px;
+    }
+
+    50% {
+      height: 100%;
+      width: 2px;
+    }
+
+    75% {
+      opacity: 1;
+    }
+
+    100% {
+      height: 100%;
+      width: 15%;
+      opacity: 0;
+    }
+  }
+
+  --dy: 0s;
+
+  .gridBox {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+
+    .block {
+      width: 100%;
+      height: 34vh;
+      background-color: #456858;
+      animation: grid-in 1s cubic-bezier(0.2, 0, 0.3, 1) var(--dy) forwards;
+      transform: rotateX(-90deg) scaleY(0) translateY(100%);
+      @extend %ts;
+    }
+  }
+
+  @keyframes grid-in {
+    0% {
+      transform: rotateX(-90deg) scaleY(0) translateY(100%);
+    }
+
+    100% {
+      transform: rotateX(0deg) scaleY(1) translateY(0);
+    }
+  }
+
+  &:before,
+  &:after {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    // height: 100%;
+    width: calc(50% + 1px);
+    // background-color: $loadingBg;
+    transition: 0.6s all ease-in-out;
+  }
+
+  &:before {
+    left: 0;
+  }
+
+  &:after {
+    right: 0;
+  }
+
+  .loadLogo {
+    opacity: 0;
+    width: 360px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    animation: loadingAni 0.5s ease-in-out 1.75s forwards;
+
+    @include media(768) {
+      width: 260px;
+    }
+
+    img {
+      @include img100;
+      transition: all 0.4s 0s ease-in-out;
+      opacity: 1;
+    }
+  }
+
+  // &.show {
+  //     pointer-events: auto;
+  //     @extend %ts;
+
+  //     .loadLogo {
+  //         opacity: 1;
+  //         animation: loadingAni 0.5s  ease-in-out 2s forwards;
+  //         transition: all 0.5s 2s ease-in-out;
+
+  //         img {
+  //             transition: all 0.4s 1.2s ease-in-out;
+  //             opacity: 0;
+  //         }
+  //     }
+  // }
+
+  &.hide {
+    opacity: 0;
+
+    .loadLogo {
+      opacity: 0;
+    }
+
+    .gridBox {
+      .block {
+        opacity: 0;
+      }
+    }
+
+    .line {
+      opacity: 0;
+    }
+
+    &:before,
+    &:after {
+      width: 0;
+    }
+  }
+}
+
+/* 彈窗 & 其他功能 */
+.topFunctionBox {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  background-color: #f7f7f7;
+
+  @include media($breakpointMedium) {
+    display: none;
+  }
+
+  .wrap {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 5px;
+    padding-top: 5px;
+
+    > a {
+      font-size: 14px;
+      letter-spacing: 0.5px;
+
+      &:before {
+        content: "‧";
+        display: inline-block;
+        vertical-align: top;
+        margin: 0 5px;
+      }
+    }
+  }
+
+  .loginBox {
+    position: relative;
+    z-index: 1;
+
+    > a {
+      display: inline-block;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+
+      &:before {
+        content: "‧";
+        display: inline-block;
+        vertical-align: top;
+        margin: 0 5px;
+      }
+    }
+
+    .submenu {
+      position: absolute;
+      left: 50%;
+      margin-left: -80px;
+      top: 130%;
+      width: 160px;
+      padding-top: 10px;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.5s;
+
+      a {
+        display: block;
+        text-align: center;
+        padding: 10px;
+        background-color: #fff;
+
+        &:not(:last-child) {
+          border-bottom: 1px solid #eee;
+        }
+      }
+    }
+
+    @include hover {
+      .submenu {
+        top: 100%;
+        opacity: 1;
+        pointer-events: auto;
+      }
+    }
+  }
+
+  .searchBox {
+    display: flex;
+
+    input[type="text"] {
+      width: 100%;
+      height: 45px;
+      padding: 0 15px;
+      border: none;
+      background-color: #fafafa;
+    }
+
+    button {
+      flex-shrink: 0;
+      display: block;
+      width: 45px;
+      height: 45px;
+      line-height: 45px;
+      font-size: 16px;
+      color: #fff;
+      text-align: center;
+      background-color: $mainColor;
+    }
+  }
+
+  .languageBox {
+    margin: 0 15px 0 10px;
+    position: relative;
+    z-index: 2;
+    font-size: 14px;
+
+    .languageCurrent {
+      cursor: pointer;
+      padding-right: 10px;
+      position: relative;
+
+      &::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-right: 1px solid #232323;
+        border-bottom: 1px solid #232323;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        z-index: 1;
+        transform: translate(100%, -50%) rotate(45deg);
+      }
+    }
+
+    .languageList {
+      width: 100%;
+      background-color: #fff;
+      box-shadow: 0 3px 6px rgba(#000, 0.1);
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 1;
+      @extend %ts;
+
+      &.show {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(10px);
+      }
+
+      li {
+        &:not(:first-child) {
+          border-top: 1px solid rgba(#000, 0.1);
+        }
+
+        a {
+          display: block;
+          font-size: 14px;
+          line-height: 1;
+          letter-spacing: 0.5px;
+          padding: 10px 10px;
+          text-align: center;
+
+          @include hover {
+            background-color: $mainColor;
+            color: #fff;
+          }
+
+          &.current {
+            background-color: $mainColor;
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+}
+
+/*header*/
+header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 51;
+  background-color: transparent;
+
+  @extend %ts;
+
+  &.bgColor {
+    background-color: #fff;
+    // border-bottom: 1px solid #ddd;
+
+    .innerBox {
+      border-bottom: none;
+    }
+
+    .logo {
+      .logoWhite {
+        display: none;
+      }
+
+      .logoDark {
+        display: block;
+      }
+    }
+
+    .menu {
+      > .menuItem {
+        .mainLink {
+          color: $linkColor;
+        }
+      }
+    }
+
+    .searchToggle {
+      svg {
+        color: $linkColor;
+      }
+    }
+
+    .languageBox {
+      color: $linkColor;
+
+      .languageCurrent {
+        &::before {
+          border-right: 1px solid #232323;
+          border-bottom: 1px solid #232323;
+        }
+      }
+    }
+
+    .inquiryBtn {
+      color: $linkColor;
+    }
+
+    .slideMenuTrigger {
+      .line {
+        &::before {
+          background-color: $mainColor;
+        }
+
+        &::after {
+          background-color: #456858;
+        }
+      }
+    }
+  }
+
+  .wrap {
+    max-width: 1710px;
+
+    @include media(1780) {
+      padding: 0 45px;
+    }
+
+    @include media(1440) {
+      padding: 0 20px;
+    }
+
+    @include media($breakpointMedium) {
+      justify-content: space-between;
+    }
+  }
+
+  .innerBox {
+    align-items: center;
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    border-bottom: 1px solid #bbb9b5;
+
+    @include media($breakpointMedium) {
+      height: 75px;
+    }
+  }
+
+  .logo {
+    .logoDark {
+      display: none;
+    }
+
+    a {
+      display: block;
+      max-width: 185px;
+
+      @include media(1640) {
+        max-width: 150px;
+      }
+
+      @include media(1180) {
+        max-width: 130px;
+      }
+
+      @include media(360) {
+        max-width: 100px;
+      }
+    }
+
+    img {
+      @include img100;
+    }
+  }
+
+  .menuBox {
+    // width: 100%;
+    display: flex;
+    justify-content: flex-end;
+
+    @include media($breakpointMedium) {
+      display: none;
+    }
+  }
+
+  /*menu*/
+  .menu {
+    > .menuItem {
+      position: relative;
+      display: inline-block;
+
+      .mainLink {
+        color: #fff;
+        display: block;
+        font-size: 17px;
+        font-weight: 700;
+        letter-spacing: 0.085px;
+        line-height: 20px;
+        padding: 43px 31px;
+
+        @include media(1640) {
+          padding: 43px 20px;
+        }
+
+        @include media(1440) {
+          padding: 43px 10px;
+        }
+
+        &.current {
+          color: $mainColor;
+        }
+
+        @include hover {
+          color: $mainColor;
+        }
+      }
+    }
+
+    .submenu {
+      width: 150px;
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      z-index: 99;
+      text-align: center;
+      transform: translateX(-50%);
+
+      // @include hover {
+      //     .left {
+      //         >div {
+      //             opacity: 1;
+      //             transform: translateX(0);
+      //         }
+      //     }
+      // }
+
+      .submenuItem {
+        width: 100%;
+        display: block;
+        position: relative;
+        padding: 0;
+      }
+
+      a {
+        // border-bottom: 1px solid rgba(#000, 0.15);
+        background-color: #f7f7f7;
+        color: #666;
+        display: block;
+        padding: 10px;
+
+        &.current {
+          color: $mainColor;
+          // background-color: $mainColor;
+        }
+
+        @include hover {
+          color: $mainColor;
+          background-color: $mainColor;
+        }
+      }
+
+      // 滿版下拉選單
+      &.fullSubmenu {
+        width: 100%;
+        background-color: #fff;
+        position: fixed;
+        left: 0;
+        top: 106px;
+        transform: translateX(0);
+        border-top: 1px solid #ddd;
+        max-height: 80vh;
+        overflow-y: scroll;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+
+        &.catalog {
+          .thirdMenu {
+            margin-top: 30px;
+          }
+        }
+
+        .wrap {
+          display: flex;
+          max-width: 1790px;
+          padding: 0 45px;
+          align-items: flex-start;
+        }
+
+        .left,
+        .center,
+        .right {
+          padding: 40px 0;
+          // height: 100%;
+          box-sizing: border-box;
+        }
+
+        .left {
+          width: 20%;
+
+          @include media(1440) {
+            width: 15%;
+          }
+
+          div {
+            opacity: 0;
+            transition: all 0.8s ease-in-out;
+            transform: translateX(-30px);
+          }
+
+          .description {
+            font-size: 16px;
+            font-weight: 400;
+            letter-spacing: 0.08px;
+            color: #5b5b5b;
+            line-height: 1.6875;
+            text-align: left;
+          }
+
+          .btnBox {
+            margin-top: 40px;
+
+            .btn {
+              max-width: 168px;
+
+              @include hover {
+                color: #fff;
+              }
+            }
+          }
+        }
+
+        .center {
+          flex: 1;
+          margin-left: 100px;
+
+          @include media(1440) {
+            margin-left: 50px;
+          }
+
+          .submenuItem {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.8s ease-in-out;
+            transition-delay: 0.2s;
+          }
+
+          .classList {
+            .submenuItem {
+              a {
+                color: #456858;
+                font-size: 16px;
+                font-weight: bold;
+                letter-spacing: 0.08px;
+
+                &.current {
+                  color: $mainColor;
+                }
+
+                @include hover {
+                  color: $mainColor;
+                }
+              }
+
+              .submenuItemTitle {
+                position: relative;
+
+                &::after {
+                  content: "";
+                  width: 20px;
+                  height: 1px;
+                  display: block;
+                  background-color: #456858;
+                  position: absolute;
+                  bottom: -15px;
+                  left: 10px;
+                  pointer-events: none;
+                }
+              }
+
+              .thirdMenuItem {
+                a {
+                  font-weight: 400;
+                  font-size: 15px;
+                  color: #5b5b5b;
+                }
+              }
+            }
+          }
+        }
+
+        .right {
+          width: 25%;
+          display: flex;
+          gap: 60px;
+          border-left: 1px solid #dddddd;
+          justify-content: center;
+          position: relative;
+
+          @include media(1440) {
+            gap: 20px;
+          }
+
+          a {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.8s ease-in-out;
+            transition-delay: 0.4s;
+          }
+        }
+
+        ul {
+          display: block;
+        }
+
+        a {
+          background-color: transparent;
+
+          &.current {
+            color: $linkHoverColor;
+          }
+
+          @include hover {
+            color: $linkHoverColor;
+          }
+        }
+
+        .submenuItem {
+          width: 100%;
+          max-width: 220px;
+          padding: 0 20px;
+          text-align: left;
+
+          @include media(1440) {
+            padding: 0 10px;
+          }
+        }
+
+        .submenuItemTitle {
+          color: $linkColor;
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 1.5;
+        }
+      }
+
+      // 兩層下拉選單
+      &.twoLayers {
+        .submenuItem {
+          position: relative;
+        }
+
+        .thirdMenu {
+          width: 150px;
+          display: none;
+          position: absolute;
+          left: 100%;
+          top: 0;
+        }
+
+        .thirdMenuItem {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .functionBox {
+    display: inline-flex;
+    align-items: center;
+    gap: 20px;
+
+    @include media(1180) {
+      margin-left: auto;
+    }
+  }
+
+  .searchToggle {
+    @include media(1180) {
+      display: none;
+    }
+
+    @include hover {
+      svg {
+        color: $mainColor;
+      }
+    }
+
+    svg {
+      width: 26px;
+      height: 26px;
+      color: #fff;
+      @extend %ts;
+    }
+  }
+
+  .languageBox {
+    position: relative;
+    z-index: 2;
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    @extend %ts;
+
+    @include media(1180) {
+      display: none;
+    }
+
+    @include hover {
+      color: $mainColor;
+
+      .languageCurrent {
+        &::before {
+          border-right: 1px solid $mainColor;
+          border-bottom: 1px solid $mainColor;
+        }
+      }
+    }
+
+    .languageCurrent {
+      cursor: pointer;
+      padding: 43px 31px 43px 21px;
+      letter-spacing: 0.085px;
+      line-height: 20px;
+      position: relative;
+      white-space: nowrap;
+
+      @include media(1440) {
+        padding: 43px 20px 43px 10px;
+      }
+
+      &::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-right: 1px solid #fff;
+        border-bottom: 1px solid #fff;
+        position: absolute;
+        top: 50%;
+        right: 5px;
+        z-index: 1;
+        transform: translate(0%, -70%) rotate(45deg);
+        @extend %ts;
+      }
+    }
+
+    .languageList {
+      width: 100%;
+      background-color: #fff;
+      box-shadow: 0 3px 6px rgba(#000, 0.1);
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 1;
+      @extend %ts;
+
+      &.show {
+        opacity: 1;
+        pointer-events: auto;
+        // transform: translateY(10px);
+      }
+
+      li {
+        &:not(:first-child) {
+          border-top: 1px solid rgba(#000, 0.1);
+        }
+
+        a {
+          display: block;
+          font-size: 14px;
+          line-height: 1;
+          letter-spacing: 0.5px;
+          padding: 10px 10px;
+          text-align: center;
+
+          @include hover {
+            background-color: $mainColor;
+            color: #fff;
+          }
+
+          &.current {
+            background-color: $mainColor;
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+
+  .inquiryBtn {
+    padding: 12px 30px;
+    white-space: nowrap;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.075px;
+    border: 1px solid #d4d2cc;
+    border-radius: 30px;
+    height: 45px;
+    color: #fff;
+    @extend %ts;
+
+    @include media(440) {
+      padding: 12px 10px;
+      font-size: 12px;
+    }
+
+    @include hover {
+      color: $mainColor;
+      border-color: $mainColor;
+    }
+  }
+}
+
+/*slideMenu*/
+.slideMenuTrigger {
+  width: 27px;
+  height: 100%;
+  align-items: center;
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  justify-content: center;
+  margin-left: 20px;
+  position: relative;
+  @extend %ts;
+  display: none;
+
+  @include media($breakpointMedium) {
+    display: flex;
+  }
+
+  .line {
+    width: 100%;
+    height: 2px;
+    background-color: transparent;
+    display: inline-block;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    transition: background-color 0.3s 0.3s ease-in-out;
+
+    &::before,
+    &::after {
+      content: "";
+      width: 100%;
+      height: 2px;
+      background-color: #fff;
+      position: absolute;
+      z-index: 1;
+      @extend %ts;
+      transition:
+        background-color 0.3s 0s ease-in-out,
+        transform 0.3s 0.3s ease-in-out;
+    }
+
+    &::before {
+      top: 50%;
+      left: 0;
+      transform: translateY(calc(-50% - 5px));
+    }
+
+    &::after {
+      top: 50%;
+      right: 0;
+      transform: translateY(calc(-50% + 5px));
+    }
+  }
+
+  &.close {
+    margin-left: 20px;
+
+    .line {
+      background-color: transparent;
+      transition:
+        background-color 0.5s 0s ease-in-out,
+        transform 0.5s 0s ease-in-out;
+
+      &::before,
+      &::after {
+        transition:
+          background-color 0.5s 0s ease-in-out,
+          transform 0.5s 0s ease-in-out;
+        background-color: #456858;
+      }
+
+      &::before {
+        top: 0;
+        left: 0;
+        transform: translateY(0) rotate(35deg);
+      }
+
+      &::after {
+        bottom: 0;
+        right: 0;
+        transform: translateY(0) rotate(-35deg);
+      }
+    }
+
+    @include hover {
+      span {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  @include hover {
+    background-color: #fff;
+
+    span {
+      background-color: transparent;
+      transition:
+        background-color 0.3s 0s ease-in-out,
+        transform 0.3s 0.6s ease-in-out;
+
+      &::before,
+      &::after {
+        background-color: $mainColor;
+        transition:
+          background-color 0.3s 0s ease-in-out,
+          transform 0.3s 0.3s ease-in-out;
+      }
+
+      &::before {
+        transform: translateY(0) rotate(45deg);
+      }
+
+      &::after {
+        transform: translateY(0) rotate(-45deg);
+      }
+    }
+  }
+}
+
+.slideMenuArea {
+  width: 100%;
+  max-width: 480px;
+  height: 100vh;
+  background-color: #fff;
+  opacity: 0;
+  overflow-x: hidden;
+  padding-bottom: calc(40px + env(safe-area-inset-bottom));
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 99;
+  transform: translateX(100%);
+  transition: all 0.6s ease-in-out;
+  -webkit-overflow-scrolling: touch;
+  @include scrollBar(5px, 5px, #fff, $mainColor);
+
+  .wrap {
+    padding: 0 20px;
+  }
+
+  &.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
+
+    .topBox {
+      animation: slideLeftAnimation 0.5s 0.6s ease-in-out both;
+    }
+
+    .menuBox {
+      animation: slideLeftAnimation 0.5s 0.9s ease-in-out both;
+    }
+
+    .btnBox {
+      animation: slideLeftAnimation 0.5s 1.2s ease-in-out both;
+    }
+
+    .funcBox {
+      animation: slideLeftAnimation 0.5s 1.5s ease-in-out both;
+    }
+
+    .socialBox {
+      animation: slideLeftAnimation 0.5s 1.8s ease-in-out both;
+    }
+
+    .copyrightBox {
+      animation: slideLeftAnimation 0.5s 2s ease-in-out both;
+    }
+  }
+
+  //如果桌機版沒有選單則下方註解打開，避免拖拉視窗時曝光
+  // @include media(-1181) {
+  // 	&.show {
+  // 		opacity: 0;
+  // 		pointer-events: none;
+  // 		transform: translateX(100%);
+  // 	}
+  // }
+
+  .topBox {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid #ececec;
+
+    .slideMenuLogo {
+      width: 135px;
+
+      img {
+        @include img100;
+      }
+    }
+
+    .inquiryBtn {
+      padding: 8px 20px;
+      white-space: nowrap;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.075px;
+      border: 1px solid #d4d2cc;
+      border-radius: 30px;
+      color: $linkColor;
+      @extend %ts;
+      margin-left: auto;
+
+      @include media(360) {
+        padding: 12px 7px;
+        margin-left: 10px;
+      }
+
+      @include hover {
+        color: $mainColor;
+        border-color: $mainColor;
+      }
+    }
+  }
+
+  .funcBox {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 15px 0;
+    margin-top: 15px;
+
+    .searchToggle {
+      display: flex;
+      align-items: center;
+
+      @include hover {
+        svg {
+          color: $mainColor;
+        }
+      }
+
+      svg {
+        width: 26px;
+        height: 26px;
+        color: $linkColor;
+        @extend %ts;
+      }
+    }
+
+    .languageBox {
+      position: relative;
+      z-index: 2;
+      font-size: 15px;
+      font-weight: 700;
+      color: $linkColor;
+      @extend %ts;
+
+      @include hover {
+        color: $mainColor;
+
+        .languageCurrent {
+          &::before {
+            border-right: 1px solid $mainColor;
+            border-bottom: 1px solid $mainColor;
+          }
+        }
+      }
+
+      .languageCurrent {
+        cursor: pointer;
+        letter-spacing: 0.085px;
+        line-height: 20px;
+        position: relative;
+        white-space: nowrap;
+        padding: 23px 31px 23px 21px;
+
+        &::before {
+          content: "";
+          width: 7px;
+          height: 7px;
+          border-right: 1px solid $linkColor;
+          border-bottom: 1px solid $linkColor;
+          position: absolute;
+          top: 50%;
+          right: 0px;
+          z-index: 1;
+          transform: translate(0%, -70%) rotate(45deg);
+          @extend %ts;
+        }
+      }
+
+      .languageList {
+        width: 100%;
+        background-color: #fff;
+        box-shadow: 0 3px 6px rgba(#000, 0.1);
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 1;
+        @extend %ts;
+
+        &.show {
+          opacity: 1;
+          pointer-events: auto;
+          // transform: translateY(10px);
+        }
+
+        li {
+          &:not(:first-child) {
+            border-top: 1px solid rgba(#000, 0.1);
+          }
+
+          a {
+            display: block;
+            font-size: 14px;
+            line-height: 1;
+            letter-spacing: 0.5px;
+            padding: 10px 10px;
+            text-align: center;
+
+            @include hover {
+              background-color: $mainColor;
+              color: #fff;
+            }
+
+            &.current {
+              background-color: $mainColor;
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .menuBox {
+    width: 100%;
+    padding: 15px 0;
+    margin-top: 15px;
+
+    .nav {
+      > .menuItem {
+        position: relative;
+
+        &.dropDown {
+          &.hasSubMenu {
+            > span {
+              cursor: pointer;
+
+              > a {
+                &::before,
+                &::after {
+                  content: "";
+                  width: 12px;
+                  height: 1px;
+                  background-color: $mainColor;
+                  position: absolute;
+                  top: 50%;
+                  right: 5px;
+                  transform: translate(-50%, 0);
+                  z-index: 1;
+                  @extend %ts;
+                }
+
+                &::after {
+                  transform: translate(-50%, 0) rotate(90deg);
+                }
+
+                &.current {
+                  &::before,
+                  &::after {
+                    background-color: $mainColor;
+                  }
+                }
+              }
+            }
+
+            &.open {
+              > span {
+                > a {
+                  &::after {
+                    transform: translate(-50%, 0) rotate(0);
+                  }
+                }
+              }
+
+              .submenu {
+                animation: slideDownAnimation 0.4s 0.3s ease-in-out both;
+              }
+            }
+          }
+        }
+
+        a {
+          color: $linkColor;
+          display: block;
+          font-size: 15px;
+          font-weight: 700;
+          line-height: 1;
+          letter-spacing: 0px;
+          padding: 13px 30px;
+          position: relative;
+          text-align: center;
+
+          &.current {
+            color: $linkHoverColor;
+          }
+
+          @include hover {
+            color: $linkHoverColor;
+          }
+        }
+      }
+
+      .submenu {
+        width: 100%;
+        background-color: rgba(#eee, 0.5);
+        display: none;
+        // padding: 0 0px 10px 0px;
+
+        // 滿版下拉選單
+        &.fullSubmenu {
+          .wrap {
+            padding: 0;
+          }
+        }
+
+        .submenuItem {
+          padding: 5px 0;
+
+          a {
+            color: #3a3a3a;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 5px 0;
+
+            &.current {
+              color: $linkHoverColor;
+            }
+
+            @include hover {
+              color: $linkHoverColor;
+            }
+          }
+
+          &.open {
+            .submenuItemTitle {
+              &.hasThirdMenu {
+                &::after {
+                  transform: translate(-50%, 0) rotate(0deg);
+                }
+              }
+            }
+          }
+        }
+
+        .submenuItemTitle {
+          position: relative;
+
+          &.hasThirdMenu {
+            &::before,
+            &::after {
+              content: "";
+              width: 12px;
+              height: 1px;
+              background-color: $mainColor;
+              position: absolute;
+              top: 50%;
+              right: 5px;
+              transform: translate(-50%, 0);
+              z-index: 1;
+              @extend %ts;
+            }
+
+            &::after {
+              transform: translate(-50%, 0) rotate(90deg);
+            }
+          }
+
+          &.current {
+            &::before,
+            &::after {
+              background-color: $mainColor;
+            }
+          }
+        }
+
+        .thirdMenu {
+          padding: 5px 0px 5px 15px;
+          display: none;
+        }
+      }
+    }
+  }
+
+  .btnBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 0px;
+
+    .btn {
+      width: 155px;
+      font-size: 14px;
+    }
+  }
+
+  .socialBox {
+    padding: 15px 0;
+
+    .socialList {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+
+      li {
+        a {
+          width: 40px;
+          height: 40px;
+          color: #456858;
+          display: block;
+          font-size: 16px;
+          line-height: 40px;
+          text-align: center;
+
+          svg {
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+            fill: $mainColor;
+            vertical-align: middle;
+          }
+
+          @include hover {
+            background-color: #fff;
+            box-shadow: 0 0 5px rgba(#000, 0.15);
+            color: $mainColor;
+
+            svg {
+              fill: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .copyrightBox {
+    align-items: center;
+    color: #92aca0;
+    display: flex;
+    // flex-wrap: wrap;
+    margin: 0 -5px;
+    position: relative;
+    justify-content: center;
+
+    .copyright {
+      font-size: 14px;
+      padding: 5px;
+    }
+
+    .ibestLink {
+      padding: 5px;
+
+      a {
+        color: #92aca0;
+        font-size: 14px;
+
+        @include hover {
+          color: $mainColor;
+        }
+      }
+    }
+
+    @include media($breakpointMedium) {
+      order: 2;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.slideMenuMask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 98;
+  background-color: rgba(#000, 0.7);
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+
+  &.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  //如果桌機版沒有選單則下方註解打開，避免拖拉視窗時曝光
+  // @include media(-1181) {
+  // 	&.show {
+  // 		opacity: 0;
+  // 		pointer-events: none;
+  // 	}
+  // }
+}
+
+/*banner*/
+.bannerArea {
+  clear: both;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(
+    49deg,
+    rgba(220, 165, 69, 0.7567401960784313) 0%,
+    rgba(69, 104, 88, 0.7063200280112045) 100%
+  );
+
+  .wrap {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .bannerItem {
+    position: relative;
+
+    .Txt {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      // padding: 0 20px;
+      z-index: 2;
+      @include cover;
+    }
+
+    .Img {
+      position: relative;
+      z-index: 1;
+
+      img {
+        @include img100;
+      }
+
+      @include media(640) {
+        img {
+          object-fit: cover;
+          // @include cover;
+        }
+      }
+    }
+  }
+
+  .bannerLink {
+    display: block;
+    z-index: 3;
+    @include cover;
+  }
+}
+
+/*footer*/
+footer {
+  background-color: #394e44;
+  padding: 50px 0;
+  overflow: hidden;
+
+  @include media(1180) {
+    padding: 50px 0 80px;
+  }
+
+  .wrap {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1790px;
+    padding: 0 45px;
+
+    @include media(960) {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  .left {
+    .logoBox {
+      display: flex;
+      gap: 40px;
+
+      @include media(960) {
+        justify-content: center;
+      }
+
+      .footerLogo {
+        a {
+          display: block;
+        }
+
+        img {
+          @include img100;
+        }
+      }
+    }
+  }
+
+  .center {
+    margin: 0 80px;
+    display: flex;
+    flex: 1;
+
+    @include media(1240) {
+      margin: 0 0 0 80px;
+    }
+
+    @include media(960) {
+      margin: 30px 0 0 0;
+      width: 100%;
+    }
+
+    nav {
+      width: 100%;
+    }
+  }
+
+  .right {
+    @include media(1240) {
+      width: 100%;
+      margin-top: 30px;
+    }
+
+    .btnBox {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin-top: 0;
+
+      @include media(1240) {
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 20px;
+      }
+
+      @include media(960) {
+        justify-content: center;
+      }
+
+      @include media(640) {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn {
+        width: 167px;
+
+        padding: 11px 10px 11px 35px;
+      }
+    }
+  }
+
+  .bottom {
+    width: 100%;
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+
+    @include media(640) {
+      flex-direction: column-reverse;
+      align-items: center;
+    }
+
+    &::before {
+      content: "";
+      width: 100vw;
+      height: 1px;
+      background-color: #526a5f;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  .infoList {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    white-space: nowrap;
+
+    @include media(960) {
+      justify-content: center;
+      align-items: center;
+    }
+
+    .MTFBox {
+      display: flex;
+      gap: 15px;
+
+      @include media(1500) {
+        flex-direction: column;
+      }
+
+      @include media(960) {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+
+    li {
+      margin-bottom: 0;
+      padding: 5px 10px;
+
+      &.fax {
+        span {
+          font-family: "Roboto", "Noto Sans TC";
+        }
+      }
+
+      i {
+        display: none;
+      }
+
+      a,
+      span {
+        line-height: 1;
+        position: relative;
+      }
+
+      a {
+        font-family: "Roboto", "Noto Sans TC";
+
+        @include hover {
+          color: $mainColor;
+        }
+      }
+    }
+  }
+
+  .socialBox {
+    padding: 15px 0;
+
+    .socialList {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+
+      li {
+        white-space: nowrap;
+
+        a {
+          width: 40px;
+          height: 40px;
+          color: #fff;
+          display: block;
+          font-size: 16px;
+          line-height: 40px;
+          text-align: center;
+
+          svg {
+            width: 23px;
+            height: 23px;
+            display: inline-block;
+            vertical-align: middle;
+          }
+
+          @include hover {
+            color: $mainColor;
+          }
+        }
+      }
+    }
+  }
+
+  .footerMenu {
+    display: flex;
+    gap: 25px;
+    width: 100%;
+    justify-content: space-between;
+
+    @include media(640) {
+      flex-wrap: wrap;
+    }
+
+    @include media(400) {
+      gap: 15px;
+    }
+
+    > li {
+      flex: 1;
+
+      &.menuItem {
+        @include media(640) {
+          width: calc(33% - 50px);
+          flex: none;
+        }
+
+        @include media(500) {
+          width: calc(50% - 30px);
+        }
+
+        .mainLink {
+          padding-bottom: 20px;
+          border-bottom: 1px solid #526a5f;
+        }
+      }
+
+      a {
+        color: #fff;
+        display: block;
+        font-size: 15px;
+        font-weight: bold;
+        letter-spacing: 0.075px;
+        @extend %ts;
+
+        @include hover {
+          color: $mainColor;
+        }
+      }
+
+      .submenu {
+        margin-top: 20px;
+
+        a {
+          font-weight: 300;
+          padding: 5px 0;
+        }
+      }
+    }
+  }
+
+  .copyrightBox {
+    align-items: center;
+    color: #92aca0;
+    display: flex;
+    // flex-wrap: wrap;
+    margin: 0 -5px;
+    position: relative;
+    justify-content: center;
+
+    @include media(640) {
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .copyright {
+      font-size: 14px;
+      padding: 5px;
+    }
+
+    .ibestLink {
+      padding: 5px;
+
+      a {
+        color: #92aca0;
+        font-size: 14px;
+
+        @include hover {
+          color: $mainColor;
+        }
+      }
+    }
+
+    @include media($breakpointMedium) {
+      order: 2;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+// 隱私權政策 同意視窗
+.privacyArea {
+  width: 100%;
+  max-width: 800px;
+  background-color: rgba(#000, 0.8);
+  box-shadow: 0 -2px 6px rgba(#000, 0.1);
+  padding: 20px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 50;
+  @extend %ts;
+  transform: translateY(100%);
+
+  &.show {
+    transform: translateY(0%);
+  }
+
+  &.check {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  .wrap {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .text {
+    width: 100%;
+    color: #fff;
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+    text-align: center;
+
+    a {
+      color: $mainColor;
+      display: inline-block;
+      margin-top: 8px;
+      text-decoration: underline;
+
+      @include hover {
+        color: $mainColor;
+      }
+    }
+  }
+
+  .btnBox {
+    width: 100%;
+    max-width: 360px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+
+    @include media(480) {
+      flex-direction: column;
+      gap: 15px;
+
+      .btn {
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+  }
+
+  @include media(480) {
+    .btnBox {
+      max-width: 100%;
+    }
+  }
+}
+
+/*手機快捷選單*/
+.fixedQuickLink {
+  width: 100%;
+  background-color: #000;
+  padding-bottom: env(safe-area-inset-bottom);
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 5;
+
+  @include media(-1181) {
+    display: none;
+  }
+
+  ul {
+    display: flex;
+  }
+
+  li {
+    flex: 1;
+
+    &:not(:last-child) {
+      border-right: 1px solid rgba(#fff, 0.1);
+    }
+  }
+
+  a,
+  button {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 55px;
+    font-size: 13px;
+    color: #fff;
+  }
+
+  i {
+    margin-bottom: 5px;
+  }
+}
+
+/*後台預覽模式 系統預設，非必要請勿刪除*/
+.adminPreviewArea {
+  max-width: 320px;
+  border: 4px solid #ffe2e2;
+  border-radius: 5px;
+  background: #fdc9c9;
+  color: #000;
+  padding: 20px;
+  position: fixed;
+  top: 15px;
+  right: 0;
+  z-index: 99999;
+
+  button {
+    text-decoration: underline;
+  }
+}
+
+/*後台登入模式 系統預設，非必要請勿刪除*/
+.adminLoginArea {
+  width: 100%;
+  background-color: rgba(#b40000, 0.85);
+  color: #fff;
+  font-size: 15px;
+  line-height: 1;
+  letter-spacing: 0.5px;
+  padding-bottom: env(safe-area-inset-bottom);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 99999;
+  text-align: center;
+
+  p {
+    padding: 20px 15px;
+  }
+}
+
+/*文字跑馬燈*/
+.marqueeArea {
+  padding: 15px 0;
+  background-color: rgb(6, 21, 64);
+
+  .title {
+    float: left;
+    margin-right: 20px;
+    font-weight: 400;
+    font-size: 15px;
+    color: #fff;
+
+    @include media(640) {
+      display: none;
+    }
+
+    em {
+      margin-left: 5px;
+    }
+  }
+
+  .marqueeBox {
+    max-height: 30px;
+    overflow: hidden;
+
+    .marqueeTxtList {
+      overflow: hidden;
+    }
+
+    .marqueeTxtItem {
+      line-height: 20px;
+
+      .item {
+        display: flex;
+      }
+
+      .date {
+        display: inline-block;
+        vertical-align: top;
+        margin-right: 10px;
+        font-size: 13px;
+        color: #dbdbdb;
+
+        @include media(640) {
+          display: none;
+        }
+      }
+
+      .title {
+        color: #fff;
+        font-size: $dataTextSize;
+        @include oneLine;
+
+        a {
+          color: #fff;
+          display: block;
+          @include oneLine;
+
+          @include hover {
+            color: $mainColor;
+          }
+        }
+      }
+    }
+  }
+}
+
+/*booking*/
+.bookingArea {
+  margin-top: -85px;
+  position: relative;
+  z-index: 2;
+
+  @include media(960) {
+    margin-top: 0;
+  }
+
+  .wrap {
+    display: flex;
+    padding: 0;
+    background-color: #fff;
+
+    @include media(960) {
+      flex-direction: column;
+      padding: 15px 20px;
+    }
+  }
+
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 3;
+    font-size: 15px;
+    border-right: 1px solid #e6e6e6;
+
+    @include media(960) {
+      display: none;
+    }
+
+    i {
+      margin-right: 15px;
+      font-size: 20px;
+    }
+  }
+
+  .bookingList {
+    display: flex;
+    flex: 6;
+    padding: 20px;
+
+    @include media(960) {
+      flex: 1;
+      flex-direction: column;
+      padding: 0;
+    }
+
+    li {
+      @include media(960) {
+        margin-bottom: 15px;
+      }
+
+      &:not(:first-child) {
+        margin-left: 10px;
+
+        @include media(960) {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+
+  .btnBox {
+    flex: 3;
+    margin: 0;
+
+    .btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        rgba(199, 144, 53, 1) 0%,
+        rgba(243, 189, 87, 1) 100%
+      );
+      color: #fff;
+      font-size: 16px;
+      letter-spacing: 0.2rem;
+
+      @include hover {
+        background-color: $linkHoverColor;
+      }
+    }
+
+    @include media(960) {
+      flex: 1;
+
+      button {
+        padding: 12px;
+      }
+    }
+  }
+
+  input,
+  select {
+    height: 45px;
+    padding: 5px 10px;
+    border: 1px solid #e6e6e6;
+    font-size: 16px;
+    font-family: "微軟正黑體";
+
+    @include media(960) {
+      width: 100%;
+    }
+  }
+}
+
+/*********內頁**********/
+.mainArea {
+  padding-bottom: 100px;
+
+  @include media($breakpointMedium) {
+    padding-bottom: 60px;
+  }
+
+  // @include media($breakpointSmall) {
+  //     padding-top: 30px;
+  //     padding-bottom: 40px
+  // }
+
+  .contentBox {
+    clear: both;
+  }
+
+  .bread {
+    // border-bottom: 1px solid #e5e5e5;
+    // background-color: #fff;
+    margin-top: 165px;
+    display: none;
+
+    &.show {
+      display: block;
+
+      @include media($breakpointSmall) {
+        display: none;
+      }
+    }
+
+    @include media(1540) {
+      margin-top: 120px;
+    }
+
+    @include media(1024) {
+      margin-top: 100px;
+    }
+
+    .wrap {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+
+      a,
+      span {
+        display: inline-flex;
+        align-items: center;
+        font-size: 16px;
+        // line-height: 1;
+        letter-spacing: 0.96px;
+        font-weight: 300;
+      }
+
+      svg {
+        width: 20px;
+        height: 16px;
+        margin-right: 10px;
+        @extend %ts;
+        color: #5f5f5f;
+      }
+
+      a {
+        color: #5f5f5fff;
+
+        @include hover {
+          color: $mainColor;
+
+          svg {
+            color: $mainColor;
+          }
+        }
+      }
+
+      span {
+        color: $textColor;
+      }
+
+      a + a,
+      span + span,
+      span + a,
+      a + span {
+        position: relative;
+      }
+    }
+
+    //箭頭
+    &.arrow {
+      .wrap {
+        a + a,
+        span + span,
+        span + a,
+        a + span {
+          // padding-left: 25px;
+
+          &::before {
+            content: "/";
+            padding: 0 7px;
+            // font-size: 20px;
+          }
+        }
+      }
+    }
+
+    //直線
+    &.verticalLine {
+      .wrap {
+        a + a,
+        span + span,
+        span + a,
+        a + span {
+          padding-left: 20px;
+
+          &::before {
+            content: "";
+            width: 1px;
+            height: 70%;
+            background-color: #cececa;
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            z-index: 1;
+            transform: translateY(-50%) skewX(-15deg);
+          }
+        }
+      }
+    }
+
+    //橫線
+    &.horizontalLine {
+      .wrap {
+        a + a,
+        span + span,
+        span + a,
+        a + span {
+          padding-left: 25px;
+
+          &::before {
+            content: "";
+            width: 8px;
+            height: 1px;
+            background-color: $textColor;
+            position: absolute;
+            top: 50%;
+            left: 8px;
+            z-index: 1;
+          }
+        }
+      }
+    }
+
+    @include media($breakpointSmall) {
+      display: none;
+    }
+  }
+}
+
+/*bread*/
+.bread {
+  // border-bottom: 1px solid #e5e5e5;
+  // background-color: #fff;
+  margin-top: 165px;
+
+  @include media(1540) {
+    margin-top: 100px;
+  }
+
+  @include media(1024) {
+    margin-top: 60px;
+  }
+
+  .wrap {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    a,
+    span {
+      display: inline-flex;
+      align-items: center;
+      font-size: 16px;
+      // line-height: 1;
+      letter-spacing: 0.96px;
+      font-weight: 300;
+    }
+
+    svg {
+      width: 20px;
+      height: 16px;
+      margin-right: 10px;
+      @extend %ts;
+    }
+
+    a {
+      color: #fff;
+
+      @include hover {
+        color: $mainColor;
+      }
+    }
+
+    span {
+      color: $textColor;
+    }
+
+    a + a,
+    span + span,
+    span + a,
+    a + span {
+      position: relative;
+    }
+  }
+
+  //箭頭
+  &.arrow {
+    .wrap {
+      a + a,
+      span + span,
+      span + a,
+      a + span {
+        // padding-left: 25px;
+
+        &::before {
+          content: "/";
+          padding: 0 7px;
+          // font-size: 20px;
+        }
+      }
+    }
+  }
+
+  //直線
+  &.verticalLine {
+    .wrap {
+      a + a,
+      span + span,
+      span + a,
+      a + span {
+        padding-left: 20px;
+
+        &::before {
+          content: "";
+          width: 1px;
+          height: 70%;
+          background-color: #cececa;
+          position: absolute;
+          top: 50%;
+          left: 10px;
+          z-index: 1;
+          transform: translateY(-50%) skewX(-15deg);
+        }
+      }
+    }
+  }
+
+  //橫線
+  &.horizontalLine {
+    .wrap {
+      a + a,
+      span + span,
+      span + a,
+      a + span {
+        padding-left: 25px;
+
+        &::before {
+          content: "";
+          width: 8px;
+          height: 1px;
+          background-color: $textColor;
+          position: absolute;
+          top: 50%;
+          left: 8px;
+          z-index: 1;
+        }
+      }
+    }
+  }
+
+  @include media($breakpointSmall) {
+    display: none;
+  }
+}
+
+/*文章標題*/
+.articleTitle {
+  // border-bottom: 1px dashed #d6d6d6;
+  color: $secondColor;
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  padding: 12px 0;
+  position: relative;
+
+  &::before {
+    content: "";
+    width: 100%;
+    height: 2px;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    @include dash();
+  }
+}
+
+/*側邊標題字*/
+.sectionTitle {
+  border-bottom: 1px solid #d6d6d6;
+  color: #232323;
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 30px;
+  padding: 15px 0;
+
+  strong {
+    display: block;
+    position: relative;
+    color: #456858;
+    font-size: 50px;
+    letter-spacing: 0.25px;
+    font-weight: 700;
+
+    @include media(1400) {
+      font-size: 45px;
+    }
+
+    @include media(600) {
+      font-size: 28px;
+    }
+
+    @include media(380) {
+      font-size: 22px;
+    }
+  }
+
+  a {
+    display: block;
+    width: 100%;
+    @include oneLine;
+  }
+}
+
+table.breakpoint > tbody > tr > td.expand {
+  background: url("../images/plus.png") no-repeat 5px center;
+  cursor: pointer;
+  padding-left: 40px;
+}
+
+// 類別說明文字、聯絡我們頁面說明
+.classNote {
+  padding: 20px 0;
+
+  &.thankInfo {
+    margin-bottom: 25px;
+    border-bottom: 1px solid $lineColor;
+  }
+
+  img {
+    max-width: 100%;
+  }
+}
+
+/*類別*/
+.classBox {
+  position: relative;
+  z-index: 4;
+
+  @include media($breakpointMedium) {
+    // max-width: 300px;
+    margin: 20px auto;
+  }
+
+  .classCurrent {
+    background-color: $mainColor;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    letter-spacing: 1px;
+    padding: 10px 30px 10px 10px;
+    position: relative;
+
+    &::before {
+      content: "\f107";
+      color: #fff;
+      font-size: 15px;
+      font-family: FontAwesome;
+      line-height: 1;
+      margin-top: -6px;
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      z-index: 1;
+    }
+
+    @include media(-1181) {
+      display: none;
+      opacity: 0;
+      pointer-events: none;
+      visibility: hidden;
+    }
+  }
+
+  a,
+  span {
+    cursor: pointer;
+    @extend %ts;
+  }
+}
+
+// 橫式類別選單
+.classBoxRow {
+  margin-top: 20px;
+  margin-bottom: 50px;
+
+  .classLink {
+    @include media(-1181) {
+      justify-content: center;
+      flex-wrap: wrap;
+      display: flex;
+
+      li {
+        margin-bottom: 10px;
+        margin-right: 15px;
+      }
+
+      a,
+      span {
+        background-color: #f0f0f0;
+        color: #000;
+        display: block;
+        padding: 10px 15px;
+        letter-spacing: 0.02rem;
+        text-align: center;
+
+        &.current {
+          background-color: $mainColor;
+          color: #fff;
+        }
+
+        @include hover {
+          background-color: $mainColor;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+// 直式類別選單
+.classBoxColumn {
+  margin-bottom: 30px;
+
+  .classLink {
+    .linkHasItems {
+      &::before,
+      &::after {
+        content: "";
+        width: 13px;
+        height: 1px;
+        background-color: #2f2f2f;
+        display: block;
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        z-index: 1;
+        transition: all 0.5s;
+      }
+
+      &::before {
+        transform: translateY(-50%);
+      }
+
+      &::after {
+        transform: translateY(-50%) rotate(90deg);
+      }
+
+      &.open {
+        background-color: $mainColor;
+        color: #fff;
+
+        &::before,
+        &::after {
+          background-color: #fff;
+        }
+
+        &::after {
+          transform: translateY(-50%) rotate(0);
+        }
+
+        & + ul {
+          > li {
+            animation: aniSlideDown 0.5s 0.3s ease-out both;
+
+            a,
+            span {
+              padding-left: 25px;
+              background-color: #f1f1f1;
+
+              &.current {
+                background-color: rgba($mainColor, 0.75);
+                color: #fff;
+              }
+
+              &.open {
+                background-color: rgba($mainColor, 0.75);
+                color: #fff;
+              }
+
+              @include hover {
+                background-color: rgba($mainColor, 0.75);
+              }
+            }
+
+            ul a {
+              padding-left: 35px;
+
+              &.current {
+                background-color: rgba($mainColor, 0.5);
+                color: #fff;
+              }
+
+              @include hover {
+                background-color: rgba($mainColor, 0.5);
+              }
+            }
+          }
+        }
+
+        @include media(-1181) {
+          & + ul {
+            > li {
+              animation: aniSlideLeft 0.5s 0.3s ease-out both;
+
+              a,
+              span {
+                padding-left: 25px;
+              }
+
+              ul a {
+                padding-left: 35px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    @include media(-1181) {
+      > li {
+        &:not(:first-child) {
+          border-top: 1px solid $lineColor;
+        }
+      }
+
+      ul {
+        display: none;
+
+        li {
+          &:not(:first-child) {
+            border-top: 1px solid $lineColor;
+          }
+        }
+      }
+
+      a,
+      span {
+        color: $linkColor;
+        display: block;
+        line-height: 1.2;
+        letter-spacing: 0.2rem;
+        padding: 18px 15px;
+        position: relative;
+
+        &.current {
+          background-color: $mainColor;
+          color: #fff;
+
+          &::before,
+          &::after {
+            background-color: #fff;
+          }
+        }
+
+        @include hover {
+          background-color: $mainColor;
+          color: #fff;
+
+          &::before,
+          &::after {
+            background-color: #fff;
+          }
+        }
+      }
+    }
+  }
+}
+
+// 手機版類別選單
+.classBoxRow,
+.classBoxColumn {
+  .classLink {
+    @include media($breakpointMedium) {
+      width: 100%;
+      max-height: 90vh;
+      background-color: #fff;
+      box-shadow: 0 5px 15px rgba(#000, 0.1);
+      display: none;
+      overflow-y: auto;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 1;
+
+      &.open {
+        display: block;
+      }
+
+      > li {
+        &:not(:first-child) {
+          border-top: 1px solid $lineColor;
+        }
+
+        > a,
+        span {
+          &.current {
+            color: #fff;
+          }
+        }
+
+        ul {
+          display: none;
+        }
+      }
+
+      a,
+      span {
+        color: $linkColor;
+        background-color: #fff;
+        display: block;
+        padding: 14px 15px;
+        position: relative;
+
+        &.current {
+          background-color: $mainColor;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+/*頁碼*/
+.pageBox {
+  .pageList {
+    align-items: center;
+    border-top: 1px solid #cecece;
+    padding: 40px 0;
+    display: flex;
+    flex-wrap: wrap;
+
+    @include media($breakpointMedium) {
+      padding: 30px 0;
+    }
+
+    a {
+      border: 1px solid #c2c2c2;
+      color: #666;
+      display: block;
+      font-size: 15px;
+
+      &.prevBtn,
+      &.nextBtn {
+        &::before {
+          content: "";
+          width: 10px;
+          height: 10px;
+          border-left: 1px solid #9e9e9e;
+          border-bottom: 1px solid #9e9e9e;
+          display: block;
+          position: absolute;
+          @extend %ts;
+        }
+      }
+
+      &.prevBtn {
+        &::before {
+          transform: rotate(45deg);
+        }
+      }
+
+      &.nextBtn {
+        &::before {
+          transform: rotate(-135deg);
+        }
+      }
+
+      @include hover {
+        border: 1px solid $mainColor;
+        background-color: $mainColor;
+        color: #fff;
+
+        &.prevBtn,
+        &.nextBtn {
+          &::before {
+            border-left: 1px solid #fff;
+            border-bottom: 1px solid #fff;
+          }
+        }
+      }
+    }
+
+    //頁碼
+    &.number {
+      margin-top: 40px;
+      justify-content: center;
+
+      //橢圓 for number
+      &.oval {
+        a {
+          width: 50px;
+        }
+      }
+
+      a {
+        width: 30px;
+        height: 30px;
+        font-weight: 400;
+        line-height: 28px;
+        position: relative;
+        text-align: center;
+        margin: 5px;
+
+        &.prevBtn,
+        &.nextBtn {
+          &::before {
+            margin: auto;
+            top: 0;
+            bottom: 0;
+          }
+        }
+
+        &.prevBtn {
+          &::before {
+            left: 5px;
+            right: 0;
+          }
+        }
+
+        &.nextBtn {
+          &::before {
+            left: 0;
+            right: 5px;
+          }
+        }
+
+        &.firstBtn,
+        &.lastBtn {
+          width: auto;
+          height: auto;
+          border: none;
+          padding: 5px 10px;
+          margin: 0;
+
+          @include hover {
+            background-color: transparent;
+            color: $mainColor;
+          }
+        }
+
+        &.current {
+          border: 1px solid $mainColor;
+          background-color: $mainColor;
+          color: #fff;
+        }
+
+        @include hover {
+          &.firstBtn,
+          &.lastBtn {
+            &::before,
+            &::after {
+              border-left: 1px solid #fff;
+              border-bottom: 1px solid #fff;
+            }
+          }
+        }
+      }
+
+      .pageNumberBtnBox {
+        @include media($breakpointMedium) {
+          display: none;
+        }
+      }
+
+      .pageNumberSelect {
+        width: 30px;
+        height: 30px;
+        font-weight: 400;
+        line-height: 28px;
+        position: relative;
+        text-align: center;
+        margin: 5px;
+        appearance: none;
+        border: 1px solid #c2c2c2;
+        color: #666;
+        display: block;
+        font-size: 15px;
+
+        @include media(-$breakpointMedium) {
+          display: none;
+        }
+      }
+
+      @include media($breakpointSmall) {
+        margin-top: 30px;
+      }
+    }
+
+    //上下筆
+    &.prevnext {
+      margin-top: 60px;
+
+      li {
+        &.prev {
+          margin-right: auto;
+        }
+
+        &.next {
+          margin-left: auto;
+        }
+      }
+
+      a {
+        width: 180px;
+        height: 45px;
+        font-weight: 300;
+        line-height: 43px;
+        padding: 0 20px;
+        position: relative;
+
+        &.prevBtn,
+        &.nextBtn {
+          &::before {
+            top: calc(50% - 5px);
+          }
+        }
+
+        &.prevBtn {
+          text-align: right;
+
+          &::before {
+            left: 15px;
+          }
+        }
+
+        &.nextBtn {
+          margin-left: auto;
+          text-align: left;
+
+          &::before {
+            right: 15px;
+          }
+        }
+      }
+
+      @include media($breakpointSmall) {
+        margin-top: 40px;
+
+        a {
+          width: 125px;
+          padding: 0 15px;
+        }
+      }
+
+      @include media(640) {
+        li {
+          width: calc(100% / 2 - 15px);
+        }
+
+        a {
+          width: 100%;
+        }
+      }
+
+      @include media(480) {
+        li {
+          width: calc(100% / 2 - 10px);
+        }
+      }
+
+      //圓圈 for prevnext
+      &.circle {
+        a {
+          width: 45px;
+          padding: 0;
+
+          span {
+            display: none;
+          }
+
+          &.prevBtn {
+            &::before {
+              left: calc(50% - 3px);
+            }
+          }
+
+          &.nextBtn {
+            &::before {
+              right: calc(50% - 3px);
+            }
+          }
+        }
+      }
+    }
+
+    //圓圈, 橢圓 使用直接加在number or prevnext後即可
+
+    //圓圈
+    &.circle {
+      a {
+        border-radius: 50%;
+        overflow: hidden;
+      }
+    }
+
+    //橢圓
+    &.oval {
+      a {
+        border-radius: 30px;
+        overflow: hidden;
+      }
+    }
+  }
+}
+
+/*標籤*/
+.tagBox {
+  padding: 20px 0;
+
+  b {
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  ul {
+    display: inline-block;
+  }
+
+  li {
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+
+  a {
+    position: relative;
+    display: block;
+    margin: 0 3px;
+    padding: 5px 10px;
+    border: 1px solid $mainColor;
+    font-size: 13px;
+    color: $mainColor;
+
+    @include hover {
+      color: #fff;
+      background-color: $mainColor;
+    }
+
+    &.current {
+      color: #fff;
+      background-color: $mainColor;
+
+      &:before {
+        content: "\f00d";
+        margin-right: 5px;
+        font-family: $fa;
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+/*頁籤*/
+.tab {
+  border-top: 1px solid #d6d6d6;
+  display: flex;
+  margin-top: 40px;
+
+  .tabItem {
+    flex: 1;
+  }
+
+  a {
+    height: 100%;
+    align-items: center;
+    color: $linkColor;
+    display: flex;
+    justify-content: center;
+    padding: 15px 10px;
+    position: relative;
+    text-align: center;
+    word-break: break-word;
+    z-index: 2;
+
+    &.current {
+      background-color: $linkHoverColor;
+      color: #fff;
+    }
+  }
+}
+
+/*頁籤內容*/
+.tabContent {
+  // margin-top: -1px;
+  padding: 20px 5px;
+  // border-top: 1px solid #d6d6d6;
+
+  .tabContentItem {
+    display: none;
+  }
+}
+
+/*相簿*/
+.albumBox {
+  width: 100%;
+  // margin-right: 30px;
+
+  @include media(767) {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 30px;
+  }
+
+  .albumList {
+    // 限制寬高、超過裁切，圖片撐滿
+    .albumItem {
+      cursor: pointer;
+
+      img {
+        @include img100;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &Nav {
+      margin: 15px -5px 0;
+
+      .albumItem {
+        aspect-ratio: 4 / 3;
+        padding: 0 5px;
+      }
+    }
+
+    // 限制寬高、超過裁切，圖片撐滿 END
+
+    // 限制寬度 不限制高度
+    // .albumItem {
+    // 	cursor: pointer;
+
+    // 	img {
+    // 		@include img100;
+    // 	}
+    // }
+    // &Nav {
+    // 	margin: 15px -5px 0;
+    // 	.albumItem {
+    // 		padding: 0 5px;
+    // 	}
+    // }
+    // 限制寬度 不限制高度 END
+
+    // 限制高度 不限制寬度
+    // .albumItem {
+    // 	cursor: pointer;
+    // 	img {
+    // 		width: 100%;
+    // 		display: block;
+    //         height: 100%;
+    //         object-fit: contain;
+    // 	}
+    // }
+
+    // &Main {
+    // 	.albumItem {
+    // 		height: 400px;
+    // 	}
+    // }
+
+    // &Nav {
+    // 	margin: 15px -5px 0;
+
+    // 	.albumItem {
+    // 		padding: 0 5px;
+    // 	}
+    // }
+    // 限制高度 不限制寬度 END
+  }
+}
+
+/*側邊_menu*/
+.side_menu {
+  margin-bottom: 50px;
+
+  li {
+    border-bottom: 1px solid #e1e1e1;
+    position: relative;
+
+    > a {
+      display: block;
+      font-size: 14px;
+      padding: 10px 15px;
+
+      &.current {
+        background-color: #8c8c8c;
+        color: #fff;
+      }
+
+      b {
+        color: #808080;
+        font-size: 13px;
+        font-weight: 400;
+        margin-left: 10px;
+      }
+    }
+  }
+
+  dl {
+    padding-left: 25px;
+
+    a {
+      display: block;
+      padding: 10px 15px;
+      font-size: 14px;
+
+      &.current {
+        color: #000;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+/*側邊_相簿*/
+.side_album {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-right: -10px;
+
+  li {
+    float: left;
+    width: 33.33%;
+    padding: 0 10px 10px 0;
+  }
+
+  a {
+    display: block;
+    box-shadow: 2px 2px 5px #c3c3c3;
+
+    img {
+      @include img100;
+    }
+  }
+}
+
+/*側邊_線上訂房*/
+.side_booking {
+  margin-bottom: 30px;
+
+  a {
+    display: block;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px #8d2121;
+    font-weight: bold;
+    font-size: 25px;
+    color: #fff;
+    background-color: #f05b8f;
+
+    i {
+      display: inline-block;
+      font-size: 28px;
+      padding: 10px 15px;
+      margin-right: 15px;
+      border-right: 1px solid #d33434;
+      box-shadow: 1px 0 #f38a8a;
+    }
+
+    @include hover {
+      box-shadow: inset 0 3px 3px #8d2121;
+    }
+  }
+}
+
+/*側邊_聯絡資訊*/
+.sideContactInfo {
+  margin-top: 40px;
+
+  li {
+    margin-bottom: 20px;
+  }
+
+  .address {
+    .infoText {
+      margin-right: 0;
+    }
+
+    a {
+      @include hover {
+        span {
+          color: $mainColor;
+        }
+      }
+    }
+  }
+
+  .infoText {
+    color: #fff;
+    letter-spacing: 0.5px;
+    font-size: 18px;
+    font-weight: 700;
+    font-family: "Roboto", serif;
+    margin-right: 7px;
+
+    @include media(430) {
+      font-size: 16px;
+    }
+
+    @include media(350) {
+      font-size: 14px;
+    }
+  }
+
+  a,
+  span {
+    display: inline-flex;
+    align-items: center;
+    font-size: 16px;
+    color: #fff;
+    letter-spacing: 0.08px;
+    font-weight: 400;
+    @extend %ts;
+
+    @include media(430) {
+      font-size: 14px;
+    }
+
+    @include media(350) {
+      font-size: 12px;
+    }
+  }
+
+  .en {
+    font-family: "Roboto", serif;
+    font-weight: 500;
+    padding: 0 5px;
+  }
+
+  b {
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: 400;
+  }
+}
+
+/*側邊_房型*/
+.side_room {
+  margin-bottom: 50px;
+
+  .Img {
+    img {
+      @include img100;
+    }
+  }
+
+  .Txt {
+    margin-top: 5px;
+
+    .title {
+      a {
+        font-size: 16px;
+        font-weight: 400;
+      }
+    }
+
+    .text {
+      max-height: 100px;
+      font-size: 13px;
+      color: $textColor;
+      line-height: 1.8;
+      overflow: hidden;
+    }
+  }
+}
+
+/*對應&相關*/
+.sideDataArea {
+  margin: 30px 0;
+
+  &.news {
+    .Txt {
+      padding: 15px 0;
+    }
+  }
+
+  &.fac,
+  &.catalog,
+  &.room {
+    .Txt {
+      text-align: center;
+    }
+  }
+
+  &.catalog {
+    .Img {
+      //New & hot
+      &::before {
+        box-shadow: 0 3px 8px rgba(#000, 0.15);
+        color: #fff;
+        display: block;
+        line-height: 1;
+        letter-spacing: 0.5px;
+        padding: 8px 25px;
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        z-index: 2;
+        text-align: center;
+        transform-origin: top left;
+      }
+
+      //New 顏色自行調整
+      &.statusNew {
+        &::before {
+          content: "NEW";
+          background-color: $mainColor;
+          border: 1px solid $mainColor;
+        }
+      }
+
+      //Hot 顏色自行調整
+      &.statusHot {
+        &::before {
+          content: "HOT";
+          background-color: $mainColor;
+          border: 1px solid $mainColor;
+        }
+      }
+    }
+  }
+
+  .sideDataList {
+    margin: 0 -15px;
+  }
+
+  .sideDataItem {
+    padding: 0 15px;
+  }
+
+  .Img {
+    img {
+      @include img100;
+    }
+  }
+
+  .Txt {
+    padding: 15px 0;
+
+    .newsInfoBox {
+      align-items: center;
+      color: $textColor;
+      display: flex;
+      font-size: $dataTextSize;
+      margin-bottom: 13px;
+
+      .classTitle {
+        & + .date {
+          margin-left: 11px;
+          padding-left: 11px;
+          position: relative;
+
+          &::before {
+            content: "";
+            width: 1px;
+            height: 100%;
+            background-color: $lineColor;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+          }
+        }
+      }
+    }
+
+    .title {
+      font-size: 21px;
+      letter-spacing: 1.05px;
+      font-weight: 500;
+      @include oneLine;
+    }
+
+    .text {
+      color: #5b5b5b;
+      font-size: 16px;
+      margin-top: 15px;
+      letter-spacing: 0.08px;
+      line-height: 1.6875;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-height: 54px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+  }
+
+  @include media($breakpointMedium) {
+    .sideDataList {
+      margin: 0 -10px;
+    }
+
+    .sideDataItem {
+      padding: 0 10px;
+    }
+
+    .Txt {
+      .newsInfoBox {
+        .classTitle {
+          & + .date {
+            margin-left: 8px;
+            padding-left: 8px;
+          }
+        }
+      }
+    }
+  }
+
+  @include media(640) {
+    .sideDataList {
+      margin: 0;
+    }
+
+    .sideDataItem {
+      padding: 0;
+    }
+  }
+}
+
+/*社群分享*/
+.sideShare {
+  align-items: center;
+  display: flex;
+  margin: 20px 0;
+
+  .shareList {
+    align-items: center;
+    display: flex;
+
+    .shareTitle {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 400;
+      color: $textColor;
+    }
+
+    .shareItem {
+      a,
+      button {
+        color: $textColor;
+        display: inline-block;
+        font-size: 16px;
+        line-height: 1;
+        padding: 5px 6px;
+        text-align: center;
+
+        @include hover {
+          opacity: 0.8;
+        }
+
+        svg {
+          width: 16px;
+          height: 16px;
+          display: inline-block;
+          margin-top: -3px;
+          vertical-align: middle;
+          fill: $textColor;
+        }
+
+        &.twitter {
+          svg {
+            width: 14px;
+            height: 14px;
+          }
+        }
+      }
+    }
+  }
+}
+
+/*圖片Hover效果1: 放大淡出*/
+.imh_opacity {
+  background-color: #000;
+  overflow: hidden;
+
+  img {
+    backface-visibility: hidden;
+    @extend %ts;
+  }
+
+  @include hover {
+    img {
+      opacity: 0.8;
+      transform: scale(1.05);
+    }
+  }
+}
+
+//slick
+.slick-slider,
+.controlBox {
+  .slick-arrow {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #333 !important;
+    cursor: pointer;
+    overflow: hidden;
+    position: absolute;
+    z-index: 2;
+    @extend %ts;
+    top: 43%;
+
+    //arrow
+    &::before {
+      content: "";
+      display: block;
+      opacity: 1;
+      pointer-events: none;
+      width: 9px;
+      height: 9px;
+      position: absolute;
+      top: 50%;
+      @extend %ts;
+    }
+
+    &.slick-prev {
+      left: -65px;
+
+      &::before {
+        left: 55%;
+        border-left: 1px solid #fff;
+        border-bottom: 1px solid #fff;
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+    }
+
+    &.slick-next {
+      right: -65px;
+
+      &::before {
+        left: 45%;
+        border-right: 1px solid #fff;
+        border-top: 1px solid #fff;
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+    }
+
+    @include hover {
+      background-color: $mainColor !important;
+    }
+  }
+
+  .slick-dots {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    pointer-events: none;
+    position: absolute;
+
+    &.center {
+      justify-content: center;
+    }
+
+    &.vertical {
+      width: 16px;
+      flex-direction: column;
+      position: absolute;
+
+      li {
+        margin: 8px 0;
+      }
+    }
+
+    &:not(.vertical) {
+      li {
+        margin: 0 8px;
+      }
+    }
+
+    &.large {
+      li {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    &.green {
+      li {
+        &.slick-active {
+          button {
+            &::before {
+              background-color: #456858;
+              border: 1px solid #456858;
+              opacity: 1;
+            }
+          }
+        }
+
+        @include hover {
+          button {
+            &::before {
+              background-color: #456858;
+              border: 1px solid #456858;
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+
+    li {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      overflow: hidden;
+      pointer-events: auto;
+
+      button {
+        width: 100%;
+        height: 100%;
+        border: none;
+        color: transparent;
+        display: block;
+        padding: 0;
+        position: relative;
+
+        &::before {
+          content: "";
+          width: 100%;
+          height: 100%;
+          background-color: #fff;
+          border: none;
+          border-radius: 50%;
+          color: transparent;
+          font-size: 0;
+          opacity: 1;
+          position: absolute;
+          top: 0;
+          left: 0;
+          border: 1px solid #6c6c6c;
+          @extend %ts;
+        }
+      }
+
+      &.slick-active {
+        button {
+          &::before {
+            background-color: $mainColor;
+            border: 1px solid $mainColor;
+            opacity: 1;
+          }
+        }
+      }
+
+      @include hover {
+        button {
+          &::before {
+            background-color: $mainColor;
+            border: 1px solid $mainColor;
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}
+
+.slickClsList {
+  //cls
+  &:not(.slick-slider) {
+    overflow: hidden;
+
+    .slickClsItem {
+      &:not(:first-child) {
+        display: none;
+      }
+    }
+  }
+}
+
+/*img lazy load */
+.Img {
+  position: relative;
+
+  &.observer,
+  &.observerSlick {
+    &:not(.loaded) {
+      // 如果不要動畫效果，把animation, background-size, background-color 註解掉即可
+      animation: imgLoading 0.9s ease infinite;
+      background-size: 400% 100%;
+      background-image: linear-gradient(
+        135deg,
+        rgb(225, 225, 225),
+        rgb(225, 225, 225),
+        rgb(225, 225, 225),
+        rgb(225, 225, 225),
+        rgb(225, 225, 225),
+        rgb(225, 225, 225),
+        rgb(246, 246, 246),
+        rgb(225, 225, 225),
+        rgb(225, 225, 225),
+        rgb(225, 225, 225),
+        rgb(225, 225, 225),
+        rgb(225, 225, 225),
+        rgb(225, 225, 225)
+      );
+      background-color: #f0f0f0;
+
+      img {
+        opacity: 0 !important;
+        transition: all 1.2s ease !important;
+      }
+    }
+  }
+}
+
+/* lightgallery 圖片不被標題、選單遮擋 */
+.lg-outer {
+  &.lg-thumb-open {
+    .lg {
+      .lg-img-wrap {
+        padding-bottom: 138px;
+      }
+    }
+  }
+
+  .lg {
+    .lg-img-wrap {
+      padding-top: 47px;
+      padding-bottom: 38px;
+    }
+  }
+}
+
+/* scroll hint */
+.scrollHint {
+  width: 120px;
+  height: 100px;
+  background-color: rgba(#000, 0.5);
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  @extend %ts;
+
+  &.hide {
+    opacity: 0;
+  }
+
+  &.horizontal {
+    .scrollIcon {
+      animation: scrollHorizontal 1.25s ease-out infinite;
+    }
+  }
+
+  &.vertical {
+    .scrollIcon {
+      animation: scrollVertical 1.25s ease-out infinite;
+    }
+  }
+
+  .scrollIcon {
+    position: relative;
+    content: url('data:image/svg+xml; utf8, <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M13 2c-1.645 0-3 1.355-3 3v11.813l-.656-.688l-.25-.219a2.968 2.968 0 0 0-4.188 0a2.968 2.968 0 0 0 0 4.188v.031l8.188 8.094l.062.031l.031.063a8.307 8.307 0 0 0 5 1.687h1.72a8.17 8.17 0 0 0 8.187-8.188V14c0-1.645-1.356-3-3-3c-.426 0-.82.117-1.188.281C23.578 9.981 22.395 9 21 9c-.766 0-1.469.3-2 .781A2.984 2.984 0 0 0 17 9a2.95 2.95 0 0 0-1 .188V5c0-1.645-1.355-3-3-3m0 2c.555 0 1 .445 1 1v11h2v-4c0-.555.445-1 1-1c.555 0 1 .445 1 1v4h2v-4c0-.555.445-1 1-1c.555 0 1 .445 1 1v4h2.094v-2c0-.555.445-1 1-1c.554 0 1 .445 1 1v7.813c0 3.464-2.723 6.187-6.188 6.187h-1.718c-1.465 0-2.731-.523-3.782-1.313l-8.094-8c-.445-.445-.445-.93 0-1.375c.446-.445.93-.445 1.375 0L12 21.625V5c0-.555.445-1 1-1"/></svg>');
+    width: 32px;
+    height: 32px;
+    filter: invert(1);
+    z-index: 2;
+  }
+
+  .scrollText {
+    margin-top: 10px;
+    color: #fff;
+  }
+}
+
+/* toast */
+$position_map: ("top", "right", "bottom", "left");
+
+.toastMessageBox {
+  position: fixed;
+  z-index: 1005;
+
+  @each $position in $position_map {
+    &.#{$position} {
+      #{$position}: 40px;
+
+      @include media(640) {
+        #{$position}: 10px;
+      }
+    }
+  }
+
+  .toastMessage {
+    cursor: pointer;
+    color: #fff;
+    display: block;
+    margin: 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.3s linear;
+
+    &.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .toastMessageText {
+    align-items: center;
+    display: flex;
+
+    i {
+      font-size: 24px;
+      margin-right: 10px;
+    }
+  }
+}
+
+// esg新增start
+.slideModuleBox.moduleBox {
+  justify-content: flex-end;
+  padding: 0;
+  @extend %ts;
+  top: 0;
+  background-color: rgba(#d1d1d1, 0.8);
+
+  &.show {
+    @keyframes modlueSildeLeftAnimation {
+      0% {
+        transform: translateX(50px);
+        opacity: 0;
+      }
+
+      100% {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes modlueSildeTopAnimation {
+      0% {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .moduleWrap {
+      animation: modlueSildeLeftAnimation 0.8s ease-in-out;
+
+      @include media(1200) {
+        animation: modlueSildeTopAnimation 0.8s ease-in-out;
+      }
+    }
+  }
+
+  @include media(1200) {
+    padding: 68px 20px 0;
+    justify-content: center;
+  }
+
+  .moduleClose {
+    background: transparent;
+    border-radius: 99px;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #414141;
+    right: 60px;
+    top: 47px;
+
+    @include media(720) {
+      left: 50%;
+      top: 20px;
+      transform: translateX(-50%);
+    }
+
+    &::before,
+    &::after {
+      background-color: #666666;
+      width: 26px;
+      margin-left: -12px;
+    }
+
+    &:hover {
+      background-color: #666666;
+
+      &::before,
+      &::after {
+        background-color: #fff;
+      }
+    }
+  }
+
+  .moduleWrap {
+    max-width: 860px;
+    height: 100%;
+    transform: none;
+    padding-top: 153px;
+
+    @include media(720) {
+      padding-top: 100px;
+    }
+  }
+
+  .moduleContent {
+    padding: 0 60px;
+    padding-left: 77px;
+
+    @include media(960) {
+      padding: 0 20px;
+    }
+
+    .text {
+      font-size: 17px;
+      color: #888888;
+      letter-spacing: 2.5px;
+
+      @include media(720) {
+        font-size: 15px;
+        letter-spacing: 1.2px;
+      }
+    }
+  }
+
+  .moduleTitle {
+    text-align: left;
+    font-size: 34px;
+    font-weight: 500;
+    color: $secondColor;
+    padding-bottom: 13px;
+  }
+}
+
+#SDGsModule {
+  .moduleWrap {
+    max-width: 960px;
+    height: 100%;
+    padding-right: 150px;
+    padding-top: 152px;
+
+    @include media(1400) {
+      padding-right: 80px;
+    }
+
+    @include media(1200) {
+      padding-top: 110px;
+    }
+
+    @include media(1024) {
+      padding-right: 20px;
+      padding-left: 20px;
+    }
+  }
+
+  .topBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    padding-bottom: 17px;
+    margin-bottom: 20px;
+
+    @include media(1200) {
+      align-items: center;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 1px;
+      background-color: $mainColor;
+      bottom: 0;
+      left: auto;
+    }
+
+    .line {
+      min-width: 0;
+      flex-grow: 1;
+      height: 1px;
+      background-color: #e5e5e5;
+      background-clip: content-box;
+      padding: 0 36px;
+      width: 0;
+      display: flex;
+      align-self: center;
+      margin-top: 8px;
+
+      @include media(1200) {
+        margin-bottom: 0;
+        margin-top: 0;
+      }
+
+      @include media(1024) {
+        padding: 0 20px;
+      }
+    }
+
+    .classTitle {
+      font-size: 15px;
+      color: $mainColor;
+      padding-top: 23px;
+      line-height: 1.2;
+      box-sizing: border-box;
+      letter-spacing: 1.2px;
+
+      @include media(1200) {
+        padding-top: 0;
+      }
+    }
+
+    .dateBox {
+      display: flex;
+      align-items: flex-end;
+
+      @include media(1200) {
+        align-items: center;
+      }
+
+      .date {
+        font-size: 34px;
+        font-weight: 500;
+        color: #555555;
+
+        @include media(1200) {
+          font-size: 24px;
+        }
+      }
+
+      .year {
+        font-size: 14px;
+        font-weight: bold;
+        color: #555555;
+        margin-bottom: 10px;
+        padding-right: 30px;
+        letter-spacing: 1.1px;
+        position: relative;
+
+        @include media(1200) {
+          font-size: 14px;
+          margin-bottom: 0;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          width: 6px;
+          height: 6px;
+          border-radius: 99px;
+          background-color: #c9c9c9;
+          right: 10px;
+          top: 6px;
+        }
+      }
+    }
+  }
+
+  .moduleClose {
+    @include media(1200) {
+      left: 50%;
+      top: 40px;
+      transform: translateX(-50%);
+    }
+  }
+
+  .moduleContent {
+    padding-left: 80px;
+    padding-bottom: 60px;
+
+    @include media(1200) {
+      padding-bottom: 80px;
+      padding-right: 0px;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    @include media(1024) {
+      padding-left: 0px;
+    }
+
+    .moduleTitle {
+      line-height: 1.5;
+      padding-bottom: 70px;
+
+      @include media(1200) {
+        font-size: 28px;
+      }
+
+      @include media(1024) {
+        padding-bottom: 50px;
+      }
+
+      @include media(540) {
+        padding-bottom: 40px;
+      }
+    }
+
+    .Img {
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 18px;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .textEditor {
+      font-size: 17px;
+      color: #666666;
+      letter-spacing: 1.1px;
+    }
+  }
+}
+
+.esg_slideMenuTrigger {
+  width: 50px;
+  height: 50px;
+  border: solid 1px #000000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  margin-left: 30px;
+  cursor: pointer;
+  @extend %ts;
+
+  @include media(1700) {
+    margin-left: 10px;
+  }
+
+  @include media(1200) {
+    width: 42px;
+    height: 42px;
+  }
+
+  &:hover {
+    background-color: #000000;
+
+    .line {
+      &::before,
+      &::after {
+        background-color: #fff;
+      }
+    }
+  }
+
+  .line {
+    width: 50%;
+    height: 2px;
+    position: relative;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: #000000;
+      top: 0;
+      left: 0;
+      @extend %ts;
+    }
+
+    &::before {
+      transform: translateY(-5px);
+    }
+
+    &::after {
+      transform: translateY(5px);
+    }
+  }
+}
+
+.esg_slideMenuArea {
+  width: 100%;
+  height: 100vh;
+  background: #ffffff;
+  display: flex;
+  align-items: stretch;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 99;
+  transform: translateX(100%);
+  transition: all 0.6s ease-in-out;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
+  opacity: 0;
+  pointer-events: none;
+  padding-bottom: calc(40px + env(safe-area-inset-bottom));
+  @include scrollBar(5px, 5px, #fff, $mainColor);
+
+  &.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
+
+    .slideMenuLogo {
+      animation: textSlideRightAnimation 0.5s 0.6s ease-in-out both;
+    }
+
+    .menuBox {
+      animation: textSlideRightAnimation 0.5s 0.6s ease-in-out both;
+
+      @include media(1200) {
+        padding-bottom: 0px;
+      }
+
+      .nav {
+        li {
+          &.dropDown {
+            &.open {
+              .submenu {
+                animation: textSlideDownAnimation 0.3s 0.15s ease-in-out both;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // 如果桌機版沒有選單則下方註解打開，避免拖拉視窗時曝光
+  // @include media(-1181) {
+
+  // 	&.show {
+  // 		opacity: 0;
+  // 		pointer-events: none;
+  // 		transform: translateX(100%);
+  // 	}
+  // }
+
+  .wrap {
+    max-width: 1540px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 20px;
+  }
+
+  .esg_slideMenuTrigger {
+    .line {
+      &::before {
+        transform: rotate(45deg);
+      }
+
+      &::after {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+  .headBox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 45px 0 15px;
+
+    @include media(1200) {
+      padding-top: 20px;
+    }
+
+    .slideMenuLogo {
+      width: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 190px;
+        flex-shrink: 0;
+
+        @include media(1700) {
+          width: 150px;
+        }
+
+        @include media(1200) {
+          width: 120px;
+        }
+      }
+
+      .title {
+        color: $secondColor;
+        font-size: 20px;
+        font-weight: 700;
+        position: relative;
+        padding-left: 30px;
+
+        @include media(1700) {
+          font-size: 16px;
+          padding-left: 20px;
+        }
+
+        @include media(1200) {
+          font-size: 14px;
+        }
+
+        &::before {
+          content: "";
+          position: absolute;
+          width: 1px;
+          height: 24px;
+          background: $secondColor;
+          top: 50%;
+          left: 15px;
+          transform: translateY(-50%);
+
+          @include media(1700) {
+            left: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  .contentBox {
+    min-height: 0;
+    display: flex;
+    flex-grow: 1;
+    padding-bottom: 10px;
+    overflow: auto;
+    @include scrollBar(5px, 5px, #fff, $mainColor);
+
+    @include media(1200) {
+      min-height: auto;
+      flex-direction: column;
+      flex-grow: 0;
+      padding-bottom: 20px;
+      overflow: visible;
+    }
+  }
+
+  .menuBox {
+    width: auto;
+    position: relative;
+    padding: 40px 280px 40px 0;
+
+    @include media(1200) {
+      padding: 0 0 25px;
+    }
+
+    .slideMenu {
+      width: 260px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding-right: 40px;
+      margin-right: 20px;
+      overflow: auto;
+      @include scrollBar(5px, 5px, #f1f1f1, $mainColor);
+
+      @include media(1200) {
+        width: 100%;
+        height: auto;
+        padding-right: 0;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        width: 1px;
+        height: 80%;
+        background: $lineColor;
+        right: 280px;
+        top: 80px;
+
+        @include media(1200) {
+          content: normal;
+        }
+      }
+
+      .submenu {
+        display: block;
+        width: 280px;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        opacity: 0;
+        padding: 60px 20px 60px 60px;
+        pointer-events: none;
+        overflow: auto;
+        @include scrollBar(5px, 5px, #f1f1f1, $mainColor);
+
+        @include media(1200) {
+          display: none;
+          width: 100%;
+          position: static;
+          padding: 0;
+        }
+
+        &::before {
+          content: normal;
+        }
+
+        .wrap {
+          padding: 0;
+        }
+
+        li {
+          border-bottom: 0;
+
+          a {
+            display: block;
+            color: $textColor;
+            font-size: 17px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            padding: 10px 0;
+
+            @include media(1200) {
+              font-size: 15px;
+              padding: 5px 0;
+            }
+
+            @include hover {
+              color: $mainColor;
+            }
+          }
+        }
+
+        .submenuItemTitle {
+          display: block;
+          color: $textColor;
+          font-size: 17px;
+          font-weight: bold;
+          letter-spacing: 1px;
+          position: relative;
+          padding: 10px 0;
+
+          @include media(1200) {
+            font-size: 15px;
+            padding: 5px 0;
+          }
+
+          @include hover {
+            color: $mainColor;
+          }
+
+          &.hasItem {
+            &.open {
+              &::after {
+                content: "-";
+              }
+            }
+
+            &::after {
+              content: "+";
+              position: absolute;
+              right: 0;
+            }
+          }
+        }
+
+        .thirdMenu {
+          display: none;
+          padding: 0 20px;
+
+          .thirdMenuItem {
+            a {
+              font-size: 13px;
+              opacity: 0.8;
+            }
+          }
+        }
+      }
+
+      .slide {
+        border-bottom: solid 1px $lineColor;
+        position: static;
+
+        &.active {
+          @include media(1200) {
+            padding-bottom: 20px;
+          }
+
+          .submenu {
+            opacity: 1;
+            pointer-events: auto;
+            animation: textSlideRightAnimation 0.5s ease-in-out;
+          }
+        }
+
+        &.noSubmenu {
+          .mainLink {
+            &::after {
+              content: normal;
+            }
+          }
+        }
+
+        & > span {
+          .mainLink {
+            display: block;
+            color: $linkColor;
+            font-size: 17px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            padding: 30px 20px 24px 0;
+
+            @include media(1200) {
+              font-size: 16px;
+              position: relative;
+              padding: 10px 0;
+            }
+
+            @include hover {
+              color: $mainColor;
+            }
+
+            &::before,
+            &::after {
+              content: normal;
+            }
+
+            &::after {
+              @include media(1200) {
+                content: "+";
+                position: absolute;
+                right: 0;
+              }
+            }
+
+            &.open {
+              &::after {
+                content: "-";
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .imgBox {
+    min-width: 0;
+    flex-grow: 1;
+    padding-top: 80px;
+
+    @include media(1200) {
+      display: none;
+    }
+
+    img {
+      display: none;
+      @include img100;
+    }
+  }
+}
+
+// esg新增end
+
+/* google 搜尋相關 */
+/* google 搜尋 輸入欄彈窗 */
+.moduleBox.googleSearch {
+  .moduleWrap {
+    max-width: 960px;
+  }
+
+  .moduleContent {
+    max-height: calc(90vh - 50px);
+    overflow-y: auto;
+  }
+
+  // 輸入框樣式
+  .gsc-input-box {
+    height: 40px;
+    display: flex;
+    align-items: center;
+  }
+
+  .gsc-search-button {
+    height: 40px;
+  }
+}
+
+// google 搜尋 -> 彈窗 樣式調整 (為了蓋過去多包一層，依父層的位置調整)
+.moduleBox.googleSearch {
+  .tabContentItem.googlePopup {
+    .gsc-results-wrapper-overlay {
+      width: 60vw;
+      height: 70vh;
+      top: calc(50% - 35dvh);
+      left: calc(50% - 30dvw);
+
+      @include media($breakpointMedium) {
+        width: 80dvw;
+        height: 90dvh;
+        top: calc(50% - 45dvh);
+        left: calc(50% - 40dvw);
+      }
+
+      @include media($breakpointSmall) {
+        width: 100dvw;
+        height: 100dvh;
+        top: calc(50% - 50dvh);
+        left: calc(50% - 50dvw);
+      }
+    }
+  }
+}
+
+.brickBox {
+  position: fixed;
+  right: 160px;
+  top: 57%;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 140px;
+  height: 140px;
+  transform: translateY(-50%) rotate(45deg);
+  transition: all 1s ease-in-out;
+
+  @include media(1180) {
+    width: 100%;
+    right: 0;
+    bottom: 0;
+    top: auto;
+    transform: translateY(0%) rotate(0);
+    height: 70px;
+  }
+
+  &.active {
+    transform: translateY(-50%) rotate(45deg);
+    top: 80%;
+    right: 40px;
+    width: 110px;
+    height: 110px;
+
+    @include media(1180) {
+      width: 100%;
+      right: 0;
+      bottom: 0;
+      top: auto;
+      transform: translateY(0%) rotate(0);
+      height: 70px;
+    }
+
+    .brick {
+      .brickLink {
+        font-size: 15px;
+        font-weight: 500;
+      }
+
+      &::before {
+        animation: brickAniactive 2s infinite ease-in-out;
+      }
+    }
+  }
+}
+
+.brick {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(#fff, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid #f3bd57;
+  transition: all 0.5s ease-in-out;
+
+  @include hover {
+    transform: rotate(45deg);
+
+    .brickLink {
+      transform: rotate(-90deg);
+
+      .brickText {
+        transform: rotate(0);
+      }
+    }
+  }
+
+  &::before {
+    content: "";
+    width: calc(100% + 60px);
+    height: calc(100% + 60px);
+    border: 1px solid rgba(#fff, 0.3);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    animation: brickAni 2s infinite ease-in-out;
+    opacity: 1;
+    z-index: -1;
+
+    @include media(1180) {
+      display: none;
+    }
+  }
+
+  .brickLink {
+    display: block;
+    width: calc(100% - 30px);
+    height: calc(100% - 30px);
+    background-color: rgba(#537363, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    color: #fff;
+    letter-spacing: 0.9px;
+    transition: all 0.5s ease-in-out;
+
+    .brickText {
+      transition: all 0.5s ease-in-out;
+      transform: rotate(-45deg);
+      // @extend %ts;
+
+      @include media(1180) {
+        transform: rotate(0);
+      }
+    }
+  }
+}
+
+.linkWrap {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.grid,
+.slickGrid {
+  --frag-width: calc(var(--box-width) / var(--col));
+  --frag-height: calc(var(--box-height) / var(--row));
+  display: grid;
+  grid-template-columns: repeat(var(--col), 1fr);
+  grid-template-rows: repeat(var(--row), 1fr);
+  width: var(--box-width);
+  height: var(--box-height);
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.fragment {
+  --x-offset: calc((var(--x) / (var(--col) - 1)) * 100%);
+  --y-offset: calc((var(--y) / (var(--row) - 1)) * 100%);
+
+  background-position: var(--x-offset) var(--y-offset);
+
+  // --x-offset: calc(var(--x) * var(--frag-width) * -1);
+  // --y-offset: calc(var(--y) * var(--frag-height) * -1);
+  --rotateX: rotateX(0);
+  --rotateY: rotateY(0);
+  // background-position: var(--x-offset) var(--y-offset);
+  background-size: var(--box-width) var(--box-height);
+  background-repeat: no-repeat;
+  backface-visibility: hidden;
+  will-change: transform;
+  transform: var(--rotateX) var(--rotateY) scale(0.8);
+  animation: flip var(--duration) linear var(--delay) forwards;
+  opacity: 0;
+  box-sizing: border-box;
+}
+
+@keyframes flip {
+  0% {
+    transform: var(--rotateX) var(--rotateY) scale(0.8);
+    opacity: 0;
+  }
+
+  15% {
+    transform: var(--rotateX) var(--rotateY) scale(0.8);
+    opacity: 0;
+  }
+
+  70% {
+    transform: rotateX(0) rotateY(0) scale(0.8);
+    opacity: 1;
+  }
+
+  100% {
+    transform: rotateX(0) rotateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.slide-horizontal {
+  .char {
+    // overflow: hidden;
+    // color: transparent;
+
+    &::before,
+    &::after {
+      visibility: visible !important;
+      color: #000000;
+      transition: all 1s cubic-bezier(0.9, 0, 0.2, 1) !important;
+      transition-delay: calc(0.1s + (0.1s * (var(--char-index)))) !important;
+    }
+
+    &::before {
+      color: #456858;
+      transition-delay: calc(0.2s * (var(--char-index)));
+      transform: translateX(110%);
+    }
+
+    &.ani {
+      &::before {
+        transform: translateX(0%);
+      }
+
+      &::after {
+        transform: translateX(-110%);
+      }
+    }
+  }
+
+  &.dark {
+    .char {
+      &::before {
+        color: #fff;
+      }
+    }
+  }
+}
+
+.switchArea {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  perspective: 800px;
+  pointer-events: none;
+  background-color: #fff;
+  @extend %ts;
+
+  &.hide {
+    opacity: 0;
+  }
+
+  &.fade-in {
+    background-color: transparent;
+
+    .switchBox {
+      opacity: 0;
+
+      .gridItem {
+        opacity: 0;
+        transform: scale(0);
+      }
+    }
+  }
+
+  &.fade-out {
+    background-color: #fff;
+
+    .switchBox {
+      opacity: 1;
+
+      .gridItem {
+        opacity: 1;
+        transform: scale(0.95);
+      }
+    }
+  }
+
+  .switchBox {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    display: flex;
+    flex-wrap: wrap;
+    opacity: 1;
+    @extend %ts;
+  }
+}
+
+.gridItem {
+  box-shadow: 0 0 5px $mainColor;
+  background: #394e44;
+  width: calc(100% / 5);
+  height: calc(100% / 3);
+  opacity: 1;
+  transform: scale(0.95);
+  transition: all 0.5s ease-in-out;
+
+  @include media(640) {
+    width: calc(100% / 3);
+    height: calc(100% / 5);
+  }
+
+  @include media(480) {
+    width: calc(100% / 3);
+    height: calc(100% / 4);
+
+    &:nth-of-type(13),
+    &:nth-of-type(14),
+    &:nth-of-type(15) {
+      display: none;
+    }
+  }
+}
+
+#moduleInquiry {
+  .btnBox {
+    @include media(480) {
+      flex-direction: column;
+      gap: 10px;
+
+      .btn {
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+  }
+}

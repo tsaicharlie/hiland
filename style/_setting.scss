@@ -1,0 +1,442 @@
+//字體引入請於font.scss 或 master.scss 引入
+
+// variable
+$fa: FontAwesome;
+
+// 主要字體
+$mainFont: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+// 次要字體
+$secondFont: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+//thirdFont: 'Comic Sans MS' + #{$mainFont}; (如果你有第三種裝飾文字)
+
+// 主視覺顏色、次要顏色
+$mainColor: #dca545;
+$secondColor: #202020;
+$thirdColor: #f7f7f7;
+
+// 標題、內文顏色
+$titleColor: $mainColor;
+$textColor: #8b8b8b;
+
+// 連結文字、連結Hover 顏色
+$linkColor: $secondColor;
+$linkHoverColor: $mainColor;
+
+// 按鈕顏色
+$btnColor: #fff;
+$btnBgColor: $mainColor;
+$btnHoverColor: $mainColor;
+$btnHoverBg: #fff;
+
+// 框線顏色
+$lineColor: rgba(#000, 0.1);
+
+// 彈跳視窗 mask 背景顏色
+$maskColor: rgba(#000, 0.7);
+
+// loading 底色
+$loadingBg: #efefef;
+
+// 主要內容預設寬度(wrap)、rwd斷點
+$defaultWidth: 1500px;
+
+$breakpointMedium: 1180px; //平板
+$breakpointSmall: 768px; //手機板
+
+// font size
+$titleSize: 36px; //主標題
+$titleSizeMedium: 32px; //主標題-中
+$titleSizeSmall: 30px; //主標題-小
+
+$subtitleSize: 28px; //副標題
+$subtitleSizeMedium: 24px; //副標題-中
+$subtitleSizeSmall: 22px; //副標題-小
+
+$decoTitleSize: 16px; //裝飾標題
+$decoTitleSizeMedium: 14px; //裝飾標題-中
+$decoTitleSizeSmall: 12px; //裝飾標題-小
+
+$textTitleSize: 20px; //簡述標題
+$textTitleSizeMedium: 18px; //簡述標題-中
+$textTitleSizeSmall: 16px; //簡述標題-小
+
+$textSize: 16px; //簡述文字
+$textSizeMedium: 15px; //簡述文字-中
+$textSizeSmall: 14px; //簡述文字-小
+
+$dataTitleSize: 24px; //卡牌文章標題
+$dataTitleSizeMedium: 22px; //卡牌文章標題-中
+$dataTitleSizeSmall: 20px; //卡牌文章標題-小
+
+$dataTextSize: 16px; //卡牌簡述
+$dataTextSizeMedium: 15px; //卡牌簡述-中
+$dataTextSizeSmall: 14px; //卡牌簡述-小
+
+// textEditor 的 H 標籤設定
+$h2Size: $titleSize;
+$h2SizeMedium: $titleSizeMedium;
+$h2SizeSmall: $titleSizeSmall;
+
+$h3Size: $subtitleSize;
+$h3SizeMedium: $subtitleSizeMedium;
+$h3SizeSmall: $subtitleSizeSmall;
+
+$h4Size: $dataTitleSize;
+$h4SizeMedium: $dataTitleSizeMedium;
+$h4SizeSmall: $dataTitleSizeSmall;
+
+$h5Size: 16px;
+$h5SizeMedium: 15px;
+$h5SizeSmall: 14px;
+
+$h6Size: 15px;
+$h6SizeMedium: 14px;
+$h6SizeSmall: 12px;
+
+// extend
+%ts {
+  transition: all 0.5s ease-in-out;
+}
+
+// mixin
+@mixin wrap(
+  $maxWidth: $defaultWidth,
+  $paddingLeft: 50px,
+  $paddingRight: 50px,
+  $position: center
+) {
+  @if $position ==center {
+    $position: 0 auto;
+  } @else if $position ==left {
+    $position: 0 auto 0 0;
+  } @else if $position ==right {
+    $position: 0 0 0 auto;
+  }
+
+  width: 100%;
+  max-width: $maxWidth;
+  margin: $position;
+
+  @content;
+
+  @include media(1700) {
+    padding: 0 90px;
+  }
+
+  @include media(1400) {
+    padding: 0 75px;
+  }
+
+  @include media(1180) {
+    padding: 0 50px;
+  }
+
+  @include media(768) {
+    padding: 0 30px;
+  }
+
+  @include media(480) {
+    padding: 0 20px;
+  }
+}
+
+@mixin pseudoBefore($content: "", $position: absolute) {
+  &::before {
+    content: $content;
+    position: $position;
+    @content;
+  }
+}
+
+@mixin pseudoAfter($content: "", $position: absolute) {
+  &::after {
+    content: $content;
+    position: $position;
+    @content;
+  }
+}
+
+@mixin calcLetterSpacing($fontSize, $PhotoShopLetterSpacing) {
+  letter-spacing: #{calc($fontSize * $PhotoShopLetterSpacing / 1000)}px;
+}
+
+@mixin dash($color: $lineColor, $ratio: 50%, $direction: right, $width: 10px) {
+  background-image: linear-gradient(
+    to #{$direction},
+    $color 0%,
+    $color $ratio,
+    transparent $ratio,
+    transparent 100%
+  );
+
+  @if ($direction ==top) or ($direction ==bottom) {
+    background-size: 100% $width;
+    background-repeat: repeat-y;
+  } @else if($direction ==right) or ($direction ==left) {
+    background-size: $width 100%;
+    background-repeat: repeat-x;
+  }
+}
+
+@mixin img100 {
+  width: 100%;
+  height: auto;
+  display: block;
+  backface-visibility: hidden;
+}
+
+@mixin imgCover {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+@mixin imgContain {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+@mixin clearfix {
+  &::after {
+    content: "";
+    height: 0;
+    clear: both;
+    display: block;
+    visibility: hidden;
+  }
+}
+
+@mixin oneLine {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin textOut {
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+}
+
+@mixin scrollBar(
+  $width: 3px,
+  $height: 3px,
+  $bgColor: #dbdbdb,
+  $barColor: $mainColor
+) {
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 $width rgba(#000, 0.15);
+    box-shadow: inset 0 0 $width rgba(#000, 0.15);
+    background-color: $bgColor;
+  }
+
+  &::-webkit-scrollbar {
+    width: $width;
+    height: $height;
+    background-color: $bgColor;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $barColor;
+  }
+}
+
+@mixin hover {
+  @include media(-1181) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@mixin cover($width: 100%, $height: 100%) {
+  width: $width;
+  height: $height;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+@mixin mediaQuery($queryType, $max, $min) {
+  @if $queryType==1 {
+    @media screen and (max-width: $max) and (min-width: $min) {
+      @content;
+    }
+  } @else if $queryType==2 {
+    @media screen and (max-width: $max) {
+      @content;
+    }
+  } @else if $queryType==3 {
+    @media screen and (min-width: $min) {
+      @content;
+    }
+  }
+}
+
+// media
+@mixin mmiw($width, $unit) {
+  @media (min-width: ($width+$unit)) {
+    @content;
+  }
+}
+
+@mixin mmaw($width, $unit) {
+  @media (max-width: ($width+$unit)) {
+    @content;
+  }
+}
+
+@mixin mmiaw($widthStart, $widthEnd, $unit) {
+  @media (min-width: ($widthStart+$unit)) and (max-width: ($widthEnd+$unit)) {
+    @content;
+  }
+}
+
+@mixin media($width, $widthRange: null) {
+  // 判斷型態
+  $unit: null;
+  $type: type-of($width);
+
+  // number
+  @if ($type==number) {
+    // 轉string
+    $width: $width + "";
+
+    // 有輸入$widthRange
+    @if ($widthRange !=null) {
+      $width: $width + "-" + $widthRange;
+    }
+
+    $type: string;
+  }
+
+  // list
+  @if ($type==list) {
+    $width: nth($width, 1) + "-" + nth($width, 2);
+    $type: string;
+  }
+
+  // string
+  @if ($type==string) {
+    // 抓dash位置
+    $dashIndex: str-index($width, "-");
+
+    // 字串長度
+    $stringLength: str-length($width);
+
+    // 整理單位和寬度
+    @if ($dashIndex==1) or ($dashIndex==$stringLength) or ($dashIndex==null) {
+      $unit: checkUnit($width);
+      $width: removeUnit($width, $unit);
+    }
+
+    @if ($dashIndex==$stringLength) or ($dashIndex==null) {
+      // max-width
+      $max: $stringLength - 1;
+
+      @if ($dashIndex==null) {
+        $max: $stringLength;
+      }
+
+      $width: str-slice($width, 1, $max);
+
+      // 呼叫對應mixin
+      @include mmaw($width, $unit) {
+        @content;
+      }
+    } @else if ($dashIndex==1) {
+      // min-width
+      $width: str-slice($width, 2, $stringLength);
+
+      // 呼叫對應mixin
+      @include mmiw($width, $unit) {
+        @content;
+      }
+    } @else {
+      // min-width and max-width
+      // 以dash切割
+      $firstWidth: str-slice($width, 1, $dashIndex - 1);
+      $secondWidth: str-slice($width, $dashIndex + 1, $stringLength);
+
+      $unit: checkUnit($firstWidth);
+
+      $firstWidth: removeUnit($firstWidth, $unit);
+      $secondWidth: removeUnit($secondWidth, $unit);
+
+      // 組成數字
+      $widths: number($firstWidth), number($secondWidth);
+
+      @include mmiaw(min($widths...), max($widths...), $unit) {
+        @content;
+      }
+    }
+  }
+}
+
+//function
+// string to number
+@function number($string) {
+  $number: 0;
+
+  @for $i from 1 through str-length($string) {
+    // 切割字串
+    $character: str-slice($string, $i, $i);
+
+    // 利用index取得對應數字
+    $index: str-index("0123456789", $character) - 1;
+
+    // 組合數字
+    $number: $number * 10 + $index;
+  }
+
+  @return $number;
+}
+
+// 單位判斷
+@function checkUnit($string) {
+  $units: px em;
+  $unit: null;
+
+  @for $i from 1 through length($units) {
+    // 跑出對應的單位
+    $hasUnit: str-index($string, nth($units, $i));
+
+    @if ($hasUnit !=null) {
+      $unit: nth($units, $i);
+    }
+  }
+
+  // 跑完還是沒有
+  @if ($unit==null) {
+    $unit: px;
+  }
+
+  @return $unit;
+}
+
+// remove unit
+@function removeUnit($string, $unit) {
+  // 找出單位index
+  $index: str-index($string, $unit);
+
+  @if ($index !=null) {
+    // 取出對應的數字
+    $string: str-slice($string, 1, $index - 1);
+  }
+
+  @return $string;
+}
+
+@function rem($size) {
+  @return $size / 16px * 1rem;
+}
+
+@function cp($value, $contentValue) {
+  @return percentage($value / $contentValue);
+}

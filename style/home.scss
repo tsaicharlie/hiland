@@ -1,0 +1,2349 @@
+@import "setting";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.mainArea {
+  padding: 0;
+}
+
+.bannerArea {
+  background: linear-gradient(
+    49deg,
+    rgba(220, 165, 69, 0.7567401960784313) 0%,
+    rgba(69, 104, 88, 0.7063200280112045) 100%
+  );
+
+  .bannerBox {
+    position: relative;
+  }
+
+  .bannerList {
+    position: relative;
+    z-index: 1;
+
+    &.slick-dotted {
+      margin-bottom: 0;
+    }
+  }
+
+  .bannerItem {
+    .Txt {
+      max-width: 1790px;
+      padding: 0 45px;
+      margin-top: 40px;
+
+      @include media($breakpointMedium) {
+        margin-top: 0;
+      }
+
+      @include media(940) {
+        margin-top: 20px;
+      }
+
+      @include media(768) {
+        margin-top: 30px;
+      }
+
+      @include media(640) {
+        padding: 0 30px;
+        margin-top: 0;
+      }
+
+      @include media(480) {
+        padding: 0 20px;
+      }
+
+      .textBox {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .title {
+        color: #fff;
+        font-size: 58px;
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: 0.29px;
+        opacity: 0;
+        position: relative;
+
+        @include media($breakpointMedium) {
+          font-size: 40px;
+        }
+
+        @include media(940) {
+          font-size: 30px;
+          font-weight: 500;
+        }
+
+        @include media(768) {
+          font-size: 24px;
+        }
+
+        @include media(640) {
+          font-size: 32px;
+        }
+
+        @include media(440) {
+          font-size: 24px;
+        }
+
+        &::before {
+          content: "";
+          display: block;
+          width: 40px;
+          height: 4px;
+          background-color: #fff;
+          position: absolute;
+          bottom: -45px;
+          left: 8px;
+
+          @include media($breakpointMedium) {
+            bottom: -35px;
+          }
+
+          @include media(940) {
+            bottom: -25px;
+            left: 3px;
+          }
+
+          @include media(768) {
+            bottom: -20px;
+            height: 2px;
+          }
+
+          @include media(640) {
+            bottom: -30px;
+          }
+
+          @include media(440) {
+            bottom: -20px;
+          }
+        }
+      }
+
+      .subtitle {
+        color: #fff;
+        display: block;
+        font-size: 31px;
+        font-weight: 300;
+        line-height: 1.41;
+        letter-spacing: 0.155px;
+        margin-top: 90px;
+        opacity: 0;
+
+        @include media($breakpointMedium) {
+          font-size: 21px;
+          margin-top: 60px;
+        }
+
+        @include media(940) {
+          font-size: 18px;
+          margin-top: 50px;
+        }
+
+        @include media(768) {
+          font-size: 16px;
+          margin-top: 40px;
+        }
+
+        @include media(640) {
+          font-size: 22px;
+          margin-top: 60px;
+        }
+
+        @include media(440) {
+          font-size: 16px;
+          margin-top: 40px;
+        }
+
+        @include media(380) {
+          font-size: 14px;
+          margin-top: 30px;
+        }
+      }
+
+      .text {
+        color: #fff;
+        display: block;
+        line-height: 1.5;
+        letter-spacing: 0.5px;
+        margin-top: 10px;
+        opacity: 0;
+
+        @include media($breakpointSmall) {
+          font-size: 14px;
+        }
+      }
+
+      .btnBox {
+        opacity: 0;
+        margin-top: 40px;
+
+        @include media(940) {
+          margin-top: 30px;
+        }
+
+        @include media(768) {
+          margin-top: 20px;
+        }
+
+        @include media(640) {
+          margin-top: 50px;
+        }
+
+        @include media(440) {
+          margin-top: 20px;
+        }
+      }
+
+      .bannerVideo {
+        .videoBtn {
+          width: 100px;
+          height: 100px;
+          border: 1px solid #fff;
+          border-radius: 50%;
+          cursor: pointer;
+          position: absolute;
+          bottom: 150px;
+          right: 50%;
+          transform: translateX(50%);
+
+          &::before {
+            content: "";
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 10px 0 10px 20px;
+            border-color: transparent transparent transparent #fff;
+            display: block;
+            position: absolute;
+            top: calc(50% - 10px);
+            left: calc(50% - 5px);
+            z-index: 1;
+          }
+
+          &::after {
+            content: "";
+            border: 1px dashed #fff;
+            border-radius: 50%;
+            z-index: 1;
+            @include cover(75%, 75%);
+          }
+        }
+      }
+    }
+
+    .Img {
+      img {
+        opacity: 0;
+        @extend %ts;
+        object-fit: cover;
+      }
+
+      // @include media(640) {
+      //     padding-bottom: 90%;
+      // }
+
+      // @include media(480) {
+      //     padding-bottom: 120%;
+      // }
+    }
+  }
+
+  .slick-current {
+    .Txt {
+      .title {
+        animation: slideUpAnimation 0.8s ease-in-out forwards;
+      }
+
+      .subtitle {
+        animation: slideUpAnimation 0.8s 0.4s ease-in-out forwards;
+      }
+
+      .text {
+        animation: slideUpAnimation 0.8s 0.8s ease-in-out forwards;
+      }
+
+      .btnBox {
+        animation: slideUpAnimation 0.8s 1.2s ease-in-out forwards;
+      }
+
+      .videoBtn {
+        &::after {
+          animation: rotate 50s linear forwards;
+        }
+      }
+    }
+  }
+
+  .slick-arrow {
+    top: 80%;
+    left: auto;
+
+    &.slick-prev {
+      right: 110px;
+    }
+
+    &.slick-next {
+      right: 50px;
+    }
+  }
+
+  .socialBox {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    z-index: 2;
+    transform: translateY(-50%);
+
+    .socialList {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+
+      li {
+        margin: 7.5px 0;
+        @extend %ts;
+
+        &:first-child {
+          margin-top: 0;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        a {
+          color: #fff;
+          display: block;
+          font-size: 18px;
+          line-height: 35px;
+          text-align: center;
+
+          svg {
+            width: 20px;
+            height: 18px;
+            display: inline-block;
+            fill: #fff;
+            margin-top: -2px;
+            vertical-align: middle;
+            @extend %ts;
+          }
+
+          @include hover {
+            color: $mainColor;
+
+            svg {
+              fill: $mainColor;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .scrollDown {
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    z-index: 2;
+
+    span {
+      display: block;
+
+      &.text {
+        color: #fff;
+        writing-mode: vertical-lr;
+        letter-spacing: 0.5px;
+      }
+
+      &.line {
+        width: 2px;
+        height: calc(100% + 20px);
+        background-color: #fff;
+        overflow: hidden;
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        z-index: 1;
+
+        &::before {
+          content: "";
+          width: 2px;
+          height: calc(100% + 20px);
+          animation: bannerScrollAnimation 2.5s linear infinite forwards;
+          background-color: $mainColor;
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 2;
+        }
+      }
+    }
+  }
+
+  .slick-dots {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    justify-content: center;
+
+    @include media($breakpointMedium) {
+      bottom: 30px;
+    }
+  }
+
+  //for stage3 demo 切板時記得刪掉
+  @include media($breakpointMedium) {
+    .Txt .bannerVideo,
+    .socialBox,
+    .scrollDown,
+    .slick-arrow {
+      display: none !important;
+    }
+  }
+}
+
+.aboutArea {
+  padding: 170px 0 100px;
+  background-image: url("../images/aboutbg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #f4f4f1;
+
+  @include media(1180) {
+    padding: 100px 0;
+  }
+
+  @include media($breakpointSmall) {
+    padding: 60px 0;
+  }
+
+  .titleBox {
+    @include media(960) {
+      text-align: center;
+    }
+  }
+
+  .aboutBox {
+    display: flex;
+    gap: 95px;
+    align-items: flex-start;
+
+    @include media(1600) {
+      align-items: center;
+    }
+
+    @include media($breakpointMedium) {
+      gap: 60px;
+    }
+
+    @include media(960) {
+      flex-direction: column;
+      gap: 0;
+    }
+
+    > .Img {
+      // width: auto;
+      position: relative;
+
+      img {
+        @include imgCover;
+      }
+    }
+
+    > .Txt {
+      width: 43%;
+      margin-bottom: 40px;
+      padding-left: 70px;
+
+      @include media(1600) {
+        padding-left: 0;
+      }
+
+      @include media(1400) {
+        width: 50%;
+      }
+
+      @include media($breakpointMedium) {
+        width: 65%;
+      }
+
+      @include media(960) {
+        width: 100%;
+      }
+
+      .titleBox {
+        margin-bottom: 0;
+      }
+
+      .btnBox {
+        margin-top: 40px;
+      }
+
+      .iconBox {
+        margin-top: 30px;
+        width: 100%;
+
+        @include media(480) {
+          display: none;
+        }
+
+        .iconList {
+          display: flex;
+
+          .iconItem {
+            width: 33%;
+
+            &:last-of-type {
+              .item {
+                &::after {
+                  content: "";
+                  width: 1px;
+                  height: 43px;
+                  background-color: #c3c3c3;
+                  position: absolute;
+                  right: 5px;
+                  bottom: 5px;
+                }
+              }
+            }
+          }
+
+          .item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+
+            &::before {
+              content: "";
+              width: 1px;
+              height: 43px;
+              background-color: #c3c3c3;
+              position: absolute;
+              left: 0;
+              bottom: 5px;
+            }
+
+            .Txt {
+              .title {
+                font-size: 17px;
+                font-weight: 400;
+                line-height: 1.647;
+                letter-spacing: 0.085px;
+                color: #000;
+                text-align: center;
+
+                @include media(1180) {
+                  font-size: 15px;
+                }
+
+                @include media(960) {
+                  font-size: 16px;
+                }
+              }
+            }
+          }
+        }
+
+        &.mobile {
+          display: none;
+          padding: 0 20px;
+
+          @include media(480) {
+            display: block;
+          }
+
+          .iconListm {
+            .slick-slide {
+              padding: 0 1px;
+
+              &.after {
+                .item {
+                  &::after {
+                    content: "";
+                    width: 1px;
+                    height: 43px;
+                    background-color: #c3c3c3;
+                    position: absolute;
+                    right: 0;
+                    bottom: 5px;
+                  }
+                }
+              }
+            }
+
+            .item {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              gap: 15px;
+              position: relative;
+
+              &::before {
+                content: "";
+                width: 1px;
+                height: 43px;
+                background-color: #c3c3c3;
+                position: absolute;
+                left: 0;
+                bottom: 5px;
+              }
+
+              .Txt {
+                .title {
+                  font-size: 17px;
+                  font-weight: 400;
+                  line-height: 1.647;
+                  letter-spacing: 0.085px;
+                  color: #000;
+                  text-align: center;
+
+                  @include media(1180) {
+                    font-size: 15px;
+                  }
+
+                  @include media(960) {
+                    font-size: 16px;
+                  }
+
+                  @include media(400) {
+                    font-size: 14px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .slick-dots {
+    bottom: -35px;
+  }
+}
+
+.roomArea {
+  padding: 50px 0 100px;
+  background-color: #efefef;
+
+  @include media($breakpointSmall) {
+    padding: 40px 0 60px;
+  }
+
+  .roomBox {
+    padding-bottom: 20px;
+  }
+
+  .roomList {
+    padding-top: 20px;
+
+    @include media($breakpointSmall) {
+      padding-top: 10px;
+    }
+  }
+
+  .item {
+    display: flex;
+    align-items: flex-start;
+
+    @include media($breakpointMedium) {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  .Img {
+    width: 60%;
+
+    img {
+      @include img100;
+    }
+  }
+
+  .Txt {
+    width: 40%;
+    padding: 0px 0px 30px 75px;
+
+    @include media($breakpointMedium) {
+      width: 100%;
+      max-width: 630px;
+      padding: 0 0 20px;
+    }
+
+    .classTitle {
+      font-size: 18px;
+      opacity: 0;
+      transform: translateY(10px);
+      @extend %ts;
+      transition-delay: 0s;
+
+      @include media($breakpointMedium) {
+        font-size: 16px;
+      }
+
+      @include media($breakpointSmall) {
+        font-size: 15px;
+      }
+    }
+
+    .title {
+      opacity: 0;
+      padding-bottom: 10px;
+      transform: translateY(10px);
+      @extend %ts;
+      transition-delay: 0.1s;
+
+      @include media($breakpointSmall) {
+        padding-bottom: 5px;
+      }
+
+      a {
+        display: block;
+        font-size: 28px;
+        font-weight: 400;
+
+        @include media($breakpointMedium) {
+          font-size: 24px;
+        }
+
+        @include media($breakpointSmall) {
+          font-size: 22px;
+        }
+      }
+    }
+
+    .text {
+      border-top: 1px solid $lineColor;
+      opacity: 0;
+      padding-top: 15px;
+      transform: translateY(10px);
+      @extend %ts;
+      transition-delay: 0.2s;
+
+      @include media($breakpointSmall) {
+        padding-top: 10px;
+      }
+    }
+
+    .btnBox {
+      margin-top: 30px;
+      opacity: 0;
+      transform: translateY(10px);
+      @extend %ts;
+      transition-delay: 0.25s;
+    }
+
+    &.show {
+      .classTitle,
+      .title,
+      .text,
+      .btnBox {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+}
+
+.newsArea {
+  padding: 50px 0;
+
+  .newsBox {
+    position: relative;
+    padding: 20px 0;
+  }
+
+  .slick-list {
+    padding: 30px 0;
+
+    @include media($breakpointMedium) {
+      padding: 0;
+    }
+  }
+
+  .slick-slide:not(.slick-active) {
+    pointer-events: none;
+    transition: all 0.3s ease;
+  }
+
+  .newsItem {
+    position: relative;
+    border-bottom: 1px solid $lineColor;
+    padding: 30px 0;
+
+    &::before {
+      content: "";
+      width: 0;
+      height: 1px;
+      background-color: $linkHoverColor;
+      position: absolute;
+      right: 0;
+      bottom: -1px;
+      transition: all 1s ease;
+    }
+
+    @include hover {
+      &::before {
+        width: 100%;
+        left: 0;
+        right: auto;
+      }
+
+      .Img {
+        visibility: visible;
+        opacity: 1;
+        transform: translateX(0px);
+      }
+
+      .title {
+        a {
+          color: $linkHoverColor;
+        }
+      }
+
+      .plusArrow {
+        border-color: $linkHoverColor;
+        background-color: $linkHoverColor;
+
+        i {
+          color: #fff;
+        }
+      }
+    }
+
+    @include media($breakpointMedium) {
+      padding: 20px 0;
+    }
+
+    @include media(480) {
+      padding: 15px 0;
+    }
+  }
+
+  .item {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .Img {
+    width: 320px;
+    display: block;
+    position: absolute;
+    right: 200px;
+    top: -60px;
+    opacity: 0;
+    overflow: hidden;
+    visibility: hidden;
+    transform: translateX(-20px);
+    transition: all 0.5s ease;
+    z-index: 9;
+
+    img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+    }
+
+    @media (max-width: 960px) {
+      & {
+        display: none;
+      }
+    }
+  }
+
+  .Txt {
+    display: flex;
+    position: relative;
+
+    @include media(480) {
+      flex-direction: column;
+    }
+  }
+
+  .newsInfoBox {
+    border-right: 1px solid #ccc;
+    padding: 0 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .dateBox {
+      text-align: center;
+
+      .date {
+        font-size: 50px;
+        font-weight: bold;
+        line-height: 1.2;
+      }
+
+      .year {
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+      }
+    }
+
+    @include media(1440) {
+      padding: 0 30px;
+    }
+
+    @include media($breakpointMedium) {
+      padding: 0 20px;
+
+      .dateBox {
+        .date {
+          font-size: 44px;
+        }
+
+        .year {
+          font-size: 13px;
+          letter-spacing: 0.3px;
+        }
+      }
+    }
+
+    @include media(640) {
+      padding: 0 10px;
+
+      .dateBox {
+        .date {
+          font-size: 40px;
+        }
+
+        .year {
+          font-size: 12px;
+          letter-spacing: 0px;
+        }
+      }
+    }
+
+    @include media(480) {
+      width: 100%;
+      border: none;
+      padding: 0 10px 5px;
+
+      .dateBox {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+
+        .date {
+          font-size: 14px;
+          letter-spacing: 0px;
+          line-height: 1.2;
+          font-weight: 500;
+
+          &::before {
+            content: ".";
+          }
+        }
+
+        .year {
+          font-size: 14px;
+          letter-spacing: 0px;
+          line-height: 1.2;
+        }
+      }
+    }
+  }
+
+  .textBox {
+    height: 110px;
+    width: 100%;
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 50px;
+
+    @include media(1440) {
+      padding: 0 60px 0 30px;
+    }
+
+    @include media($breakpointMedium) {
+      height: 100px;
+      padding: 0 30px;
+    }
+
+    @include media($breakpointSmall) {
+      height: 95px;
+      padding: 0 0px 0 20px;
+    }
+
+    @include media(480) {
+      height: 90px;
+      padding: 0 10px;
+    }
+
+    .classTitle {
+      min-width: 86px;
+      height: 25px;
+      align-items: center;
+      background-color: $mainColor;
+      color: #fff;
+      display: inline-flex;
+      font-size: 13px;
+      justify-content: center;
+      margin-bottom: 10px;
+      padding: 0 15px;
+
+      @include media($breakpointMedium) {
+        margin-bottom: 5px;
+      }
+
+      @include media($breakpointSmall) {
+        margin-bottom: 0px;
+      }
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: 400;
+      margin-bottom: 5px;
+      padding-right: 100px;
+
+      &.ellipsis {
+        height: 45px;
+        overflow: hidden;
+      }
+
+      @include media(1440) {
+        padding-right: 0;
+      }
+
+      @include media($breakpointMedium) {
+        font-size: 22px;
+        margin-bottom: 0;
+
+        &.ellipsis {
+          height: 40px;
+        }
+      }
+
+      @include media($breakpointSmall) {
+        font-size: 20px;
+
+        &.ellipsis {
+          height: 36px;
+        }
+      }
+    }
+
+    .text {
+      color: #5c5c5c;
+      font-size: 14px;
+      line-height: 1.5;
+
+      &.ellipsis {
+        height: 22px;
+        overflow: hidden;
+      }
+    }
+  }
+
+  .plusArrow {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 1px solid $lineColor;
+    right: 50px;
+    top: 50%;
+    margin-top: -25px;
+    @extend %ts;
+
+    i {
+      font-size: 12px;
+      color: $lineColor;
+    }
+
+    @include media(1440) {
+      right: 0px;
+    }
+
+    @include media($breakpointMedium) {
+      display: none;
+    }
+  }
+
+  .linkWrap {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+
+.catalogArea {
+  padding: 50px 0;
+
+  .unClick {
+    pointer-events: none;
+  }
+
+  .catalogBox {
+    transition: all 0.4s;
+    padding-bottom: 20px;
+
+    &.hide {
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(-5px);
+      transition: all 0.2s;
+    }
+  }
+}
+
+.catalogList {
+  margin: 0 -30px;
+  position: relative;
+
+  &:not(.slick-slider) {
+    display: flex;
+
+    .catalogItem {
+      width: 33.33%;
+      flex-shrink: 0;
+    }
+  }
+
+  @include media($breakpointMedium) {
+    margin: 0 -20px;
+  }
+
+  @include media($breakpointSmall) {
+    margin: 0 0px;
+  }
+
+  .catalogItem {
+    padding: 0;
+  }
+
+  .item {
+    position: relative;
+    overflow: hidden;
+    padding: 30px;
+
+    @include media($breakpointMedium) {
+      padding: 20px;
+    }
+  }
+
+  .Img {
+    img {
+      @include img100;
+    }
+  }
+
+  .Txt {
+    position: relative;
+    padding: 12px 20px 20px;
+    text-align: center;
+
+    @include media($breakpointMedium) {
+      padding: 10px 0 0px;
+    }
+
+    .title {
+      padding-bottom: 10px;
+      font-size: $dataTitleSize;
+
+      a {
+        display: block;
+      }
+
+      @include media($breakpointMedium) {
+        font-size: 22px;
+      }
+
+      @include media($breakpointSmall) {
+        font-size: 20px;
+      }
+    }
+
+    .text {
+      font-size: $dataTextSize;
+
+      &.ellipsis {
+        height: 75px;
+        overflow: hidden;
+      }
+
+      @include media($breakpointSmall) {
+        font-size: 14px;
+
+        &.ellipsis {
+          height: 70px;
+        }
+      }
+    }
+  }
+}
+
+.facArea {
+  background-color: $loadingBg;
+  padding: 50px 0 80px;
+  overflow: hidden;
+  width: 100%;
+
+  @include media($breakpointSmall) {
+    padding: 30px 0 20px;
+  }
+
+  .wrap {
+    @include media($breakpointMedium) {
+      padding: 0 30px;
+    }
+
+    @include media($breakpointSmall) {
+      padding: 0 20px;
+    }
+  }
+
+  .facBox {
+    overflow: hidden;
+    width: calc(100% + 50vw - 50%);
+
+    @include media($breakpointSmall) {
+      width: 100%;
+      max-width: 320px;
+      margin: 0 auto;
+      overflow: visible;
+    }
+  }
+
+  .controlBox {
+    width: 100%;
+    padding-left: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    @include media($breakpointSmall) {
+      height: 50px;
+      margin-bottom: 30px;
+      padding: 0 40px;
+    }
+
+    @include media(400) {
+      height: 20px;
+    }
+  }
+
+  .arrowBox {
+    display: flex;
+    align-items: center;
+    height: 50px;
+
+    .slick-arrow {
+      position: relative;
+      margin: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      transform: translate(0);
+
+      & + .slick-arrow {
+        @include media(-769) {
+          margin-left: 20px;
+        }
+      }
+    }
+
+    @include media($breakpointSmall) {
+      width: 100%;
+      position: absolute;
+      left: 0;
+
+      .slick-arrow {
+        position: absolute;
+        left: -10px;
+
+        &.slick-next {
+          left: auto;
+          right: -10px;
+        }
+      }
+    }
+
+    @include media(400) {
+      display: none;
+    }
+  }
+
+  .dotsBox {
+    height: 20px;
+    display: flex;
+    align-items: center;
+
+    @include media(-769) {
+      padding-left: 30px;
+    }
+
+    @include media($breakpointSmall) {
+      width: 100%;
+    }
+  }
+
+  .slick-dots {
+    position: relative;
+    bottom: 0;
+
+    @include media($breakpointSmall) {
+      justify-content: center;
+    }
+  }
+}
+
+.facList {
+  width: 100%;
+  position: relative;
+  padding: 20px 120px 0px 0;
+
+  @include media($breakpointSmall) {
+    padding: 20px 0 0;
+  }
+
+  .slick-list {
+    overflow: visible;
+
+    @include media(400) {
+      overflow: hidden;
+    }
+  }
+
+  .facItem {
+    @extend %ts;
+    padding: 0 20px;
+
+    @include media(-1181) {
+      @include hover {
+        .Txt {
+          background-color: rgba(#000, 0.35);
+          padding-bottom: 240px;
+          transition: all 0.5s 0s ease-out;
+          pointer-events: auto;
+
+          .text {
+            opacity: 1;
+            position: absolute;
+            bottom: calc(240px - 75px);
+            left: auto;
+            transform: translateY(0px);
+            transition:
+              opacity 0.3s 0.3s ease-in-out,
+              transform 0.5s 0.3s ease-in-out;
+          }
+        }
+      }
+    }
+
+    @include media($breakpointMedium) {
+      padding: 0 15px;
+    }
+
+    @include media(400) {
+      padding: 0 5px;
+    }
+  }
+
+  .item {
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+  }
+
+  .Img {
+    position: relative;
+    width: 100%;
+
+    img {
+      @include img100;
+    }
+  }
+
+  .Txt {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(#000, 0.1);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 30px 20px 50px;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+    transition: all 0.5s 0s ease-out;
+    z-index: 1;
+
+    a {
+      pointer-events: auto;
+    }
+
+    @include media($breakpointMedium) {
+      height: auto;
+      width: 100%;
+      background-color: rgba(#000, 0.35);
+      align-items: unset;
+      justify-content: flex-end;
+      padding: 20px 20px 30px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+
+    @include media(640) {
+      width: 100%;
+      padding: 20px 20px 30px;
+    }
+  }
+
+  .title {
+    width: 100%;
+    max-width: 400px;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 10px;
+
+    a {
+      color: #fff;
+      display: block;
+
+      @include hover {
+        color: $mainColor;
+      }
+    }
+
+    @include media($breakpointMedium) {
+      margin: 0 auto;
+    }
+
+    @include media($breakpointSmall) {
+      font-size: 26px;
+    }
+
+    @include media(480) {
+      font-size: 24px;
+      font-weight: 500;
+    }
+  }
+
+  .text {
+    width: 100%;
+    height: 75px;
+    color: #fff;
+    display: block;
+    font-size: 15px;
+    line-height: 1.6;
+    opacity: 0;
+    padding: 0 20px;
+    position: absolute;
+    bottom: calc(240px - 75px);
+    left: auto;
+    transform: translateY(20px);
+    transition:
+      opacity 0.3s 0s ease-in-out,
+      transform 0.5s 0s ease-in-out;
+
+    @include media($breakpointMedium) {
+      width: 100%;
+      max-height: 75px;
+      height: auto;
+      bottom: 0;
+      margin-top: 10px;
+      padding: 0;
+      position: relative;
+      transform: translateY(0px);
+      opacity: 1;
+    }
+  }
+
+  .linkWrap {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    @include media(1440) {
+      display: none;
+    }
+  }
+
+  .btnBox {
+    margin-top: 20px;
+
+    @include media(-1181) {
+      display: none;
+    }
+  }
+}
+
+.linkArea {
+  padding: 100px 0;
+  background-color: #40544a;
+  position: relative;
+  overflow: hidden;
+
+  .mainColorBox {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $mainColor;
+    background-repeat: no-repeat;
+    transform: translateX(100%);
+    opacity: 0.8;
+  }
+
+  @include media($breakpointSmall) {
+    padding: 60px 0;
+  }
+
+  .titleBox {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 60px;
+
+    .title {
+      color: #fff;
+    }
+
+    .text {
+      color: #fff;
+      margin-top: 20px;
+      max-width: 640px;
+    }
+  }
+
+  .btnBox {
+    margin-top: 50px;
+    text-align: center;
+  }
+}
+
+.linkList {
+  display: flex;
+  flex-wrap: wrap;
+
+  @include media(960) {
+    flex-direction: column;
+  }
+
+  .linkItem {
+    width: 50%;
+
+    @include media(960) {
+      width: 100%;
+    }
+  }
+
+  .item {
+    position: relative;
+
+    @include hover {
+      .grid {
+        .fragment {
+          filter: brightness(0.5);
+        }
+      }
+
+      .Img {
+        opacity: 0;
+
+        img {
+          opacity: 0;
+        }
+      }
+    }
+
+    .grid {
+      .fragment {
+        transition: all 0.5s ease-in-out;
+        transition-delay: var(--delay);
+      }
+    }
+
+    .mask {
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0.36;
+      width: 100%;
+      height: 100%;
+
+      img {
+        @include img100;
+      }
+    }
+
+    .linkWrap {
+      z-index: 2;
+    }
+  }
+
+  .Img {
+    width: 100%;
+    overflow: hidden;
+
+    img {
+      @include img100;
+      @extend %ts;
+    }
+  }
+
+  .Txt {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: flex-end;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    padding: 0 0 30px 55px;
+
+    @include media(540) {
+      padding: 0 0 20px 30px;
+    }
+
+    .index {
+      font-size: 16px;
+      font-weight: 400;
+      font-family: "Roboto", serif;
+      color: #fff;
+
+      @include media(768) {
+        font-size: 14px;
+      }
+    }
+
+    .title {
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.9;
+      color: #fff;
+
+      @include media(768) {
+        font-size: 22px;
+        margin-top: 5px;
+      }
+
+      a {
+        color: #fff;
+        display: block;
+        @include oneLine;
+      }
+    }
+  }
+}
+
+.keyProductArea {
+  background-color: rgba(#000, 0.8);
+
+  .wrap {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .keyProductBox {
+    width: 100%;
+  }
+
+  .keyProductList {
+    display: flex;
+    justify-content: center;
+
+    @include media(960) {
+      flex-direction: column;
+    }
+
+    .keyProductItem {
+      // flex: 1;
+      width: calc(100% / 3);
+
+      @include media(960) {
+        width: 100%;
+      }
+
+      .item {
+        position: relative;
+        overflow: hidden;
+
+        @include hover {
+          .Txt {
+            top: 31%;
+
+            .line {
+              clip-path: inset(0 0 0 0);
+            }
+
+            .btnBox {
+              opacity: 1;
+              transform: translateY(0px);
+            }
+          }
+
+          .Img {
+            .mask {
+              transform: translateX(0);
+            }
+
+            .mask2 {
+              transform: translateX(0);
+            }
+          }
+
+          .btn {
+            &::before {
+              top: 35%;
+              right: 25px;
+              background-color: $mainColor;
+              transform: translate(0, -50%);
+              transition-delay: 0.7s;
+            }
+
+            &::after {
+              top: 60%;
+              right: 25px;
+              background-color: #456858;
+              transform: translate(0, -50%);
+              transition-delay: 0.7s;
+            }
+
+            .hover {
+              clip-path: inset(0 0 50% 0);
+              transition-delay: 0.7s;
+            }
+          }
+        }
+
+        .Img {
+          @extend %ts;
+          overflow: hidden;
+          position: relative;
+
+          @include media(1180) {
+            filter: brightness(0.7);
+          }
+
+          img {
+            @include img100;
+          }
+
+          .mask {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            opacity: 0.5;
+            transform: translateX(-100%);
+            transition: all 1.2s ease-in-out;
+          }
+
+          .mask2 {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            opacity: 0.5;
+            transform: translateX(100%);
+            transition: all 1.2s ease-in-out;
+          }
+        }
+
+        .Txt {
+          position: absolute;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 55px;
+          top: 86%;
+
+          transition: all 0.8s ease-in-out;
+
+          @include media(1600) {
+            top: 60%;
+            gap: 30px;
+          }
+
+          @include media(1180) {
+            top: 20%;
+          }
+
+          @include media(960) {
+            left: 30px;
+            align-items: flex-start;
+            gap: 25px;
+            top: 48%;
+          }
+
+          @include media(640) {
+            top: 40%;
+          }
+
+          @include media(480) {
+            left: 20px;
+            top: 35%;
+          }
+
+          @include media(400) {
+            top: 25%;
+          }
+
+          @include media(350) {
+            top: 20%;
+          }
+
+          @extend %ts;
+
+          .title {
+            font-size: 30px;
+            font-weight: bold;
+            color: #fff;
+            letter-spacing: 0.15px;
+
+            @include media(640) {
+              font-size: 23px;
+            }
+            a {
+              font-size: 30px;
+              font-weight: bold;
+              color: #fff;
+              letter-spacing: 0.15px;
+
+              @include media(640) {
+                font-size: 23px;
+              }
+            }
+          }
+
+          .line {
+            width: 1px;
+            height: 180px;
+            background-color: #717170;
+
+            clip-path: inset(0 0 100% 0);
+            transition: all 0.8s ease-in-out;
+            transition-delay: 300ms;
+
+            @include media(1180) {
+              clip-path: inset(0 0 0 0);
+              background-color: #dad6d6;
+              height: 120px;
+            }
+
+            @include media(960) {
+              display: none;
+            }
+          }
+
+          .btnBox {
+            opacity: 0;
+            transition: all 0.5s ease-in-out;
+            transition-delay: 0.5s;
+            transform: translateY(20px);
+            margin-top: 0;
+            transition: all 0.8s ease-in-out;
+            transition-delay: 500ms;
+
+            @include media(1180) {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.projectArea {
+  padding: 100px 0;
+  background-image: url("../images/projectbg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #f7f7f5;
+  overflow: hidden;
+
+  .titleBox {
+    .text {
+      margin-top: 10px;
+    }
+  }
+
+  @include media($breakpointSmall) {
+    padding: 60px 0;
+  }
+
+  @include media(640) {
+    background-image: url("../images/projectbgm.jpg");
+  }
+
+  .wrap2 {
+    max-width: 1530px;
+    margin: 0 auto;
+
+    @include media(1700) {
+      padding: 0 75px;
+    }
+
+    @include media(1400) {
+      padding: 0 60px;
+    }
+
+    @include media(1180) {
+      padding: 0 35px;
+    }
+
+    @include media(768) {
+      padding: 0 15px;
+    }
+
+    @include media(480) {
+      padding: 0 20px;
+    }
+  }
+
+  .projectBox {
+    position: relative;
+
+    @include media(768) {
+      width: 50%;
+      margin: 0 auto;
+    }
+
+    @include media(640) {
+      width: 60%;
+    }
+
+    @include media(480) {
+      width: 70%;
+    }
+
+    @include media(380) {
+      width: 80%;
+    }
+  }
+
+  .btnBox {
+    &.mobile {
+      display: none;
+
+      @include media(768) {
+        display: flex;
+        justify-content: center;
+        margin-top: 100px;
+      }
+    }
+  }
+
+  .titleWrap {
+    display: flex;
+    gap: 125px;
+
+    @include media(1400) {
+      gap: 30px;
+      margin-bottom: 30px;
+      flex-direction: column;
+      align-items: flex-start;
+
+      .titleBox {
+        margin-bottom: 0;
+      }
+
+      .btnBox {
+        margin-top: 0px;
+      }
+    }
+
+    @include media(768) {
+      .btnBox {
+        display: none;
+      }
+    }
+
+    .titleBox {
+      @include media(768) {
+        text-align: center;
+      }
+    }
+
+    .text {
+      max-width: 700px;
+    }
+  }
+
+  .slick-list {
+    @include media(1180) {
+      overflow: visible;
+    }
+  }
+
+  .slick-slide:not(.slick-active) {
+    pointer-events: none;
+    transition: all 0.3s ease;
+  }
+
+  .slick-dots {
+    right: 15px;
+    top: -80px;
+    justify-content: flex-end;
+
+    @include media(960) {
+      top: calc(100% + 50px);
+      justify-content: center;
+      right: 0;
+    }
+  }
+
+  .slick-arrow {
+    &.slick-prev {
+      @include media(1600) {
+        left: -45px;
+      }
+
+      @include media(1180) {
+        left: -15px;
+      }
+
+      @include media(768) {
+        left: -45px;
+      }
+
+      @include media(380) {
+        left: -30px;
+      }
+    }
+
+    &.slick-next {
+      @include media(1600) {
+        right: -45px;
+      }
+
+      @include media(1180) {
+        right: -15px;
+      }
+
+      @include media(768) {
+        right: -45px;
+      }
+
+      @include media(380) {
+        right: -30px;
+      }
+    }
+  }
+
+  .projectItem {
+    position: relative;
+    padding: 0 15px;
+    perspective: 400px;
+
+    @include media(768) {
+      padding: 0 30px;
+    }
+
+    @include media(480) {
+      padding: 0 20px;
+    }
+
+    &::before {
+      content: "";
+      width: 0;
+      height: 1px;
+      background-color: $linkHoverColor;
+      position: absolute;
+      right: 15px;
+      bottom: -1px;
+      transition: all 1s ease;
+    }
+  }
+
+  .item {
+    position: relative;
+    cursor: pointer;
+    transform-style: preserve-3d;
+
+    @include hover {
+      .Img {
+        transform: rotateY(5deg) translateZ(-10px) rotateX(5deg);
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+      }
+
+      .Txt {
+        .title {
+          color: $mainColor;
+        }
+      }
+    }
+  }
+
+  .Img {
+    // transform: rotateX(0) translateY(0px);
+
+    // transition: all 0.5s ease-in-out;
+    img {
+      @include img100;
+    }
+  }
+
+  .Txt {
+    display: flex;
+    position: relative;
+
+    @include media(480) {
+      flex-direction: column;
+    }
+  }
+
+  .textBox {
+    width: 100%;
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .title {
+      font-size: 21px;
+      font-weight: 400;
+      margin-top: 20px;
+      @extend %ts;
+
+      @include media(500) {
+        font-size: 19px;
+      }
+    }
+
+    .text {
+      color: #5c5c5c;
+      font-size: 14px;
+      line-height: 1.5;
+
+      &.ellipsis {
+        height: 22px;
+        overflow: hidden;
+      }
+    }
+  }
+
+  .linkWrap {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+
+.relatedlinkArea {
+  padding: 120px 0 90px;
+  background-image: url("../images/relatedlinkbg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  @include media($breakpointSmall) {
+    padding: 60px 0 80px;
+  }
+
+  .wrap {
+    display: flex;
+    // gap: 70px;
+    justify-content: space-between;
+
+    @include media(960) {
+      flex-direction: column;
+      gap: 50px;
+    }
+
+    @include media(640) {
+      gap: 30px;
+    }
+
+    @include media(400) {
+      gap: 10px;
+    }
+  }
+
+  .titleBox {
+    width: 23%;
+
+    @include media(960) {
+      width: 100%;
+      text-align: center;
+    }
+
+    .text {
+      max-width: 345px;
+      margin-top: 40px;
+
+      @include media(960) {
+        margin-top: 30px;
+        max-width: 100%;
+      }
+    }
+  }
+
+  .relatedlinkBox {
+    width: calc(77% - 200px);
+
+    @include media(1500) {
+      width: calc(77% - 100px);
+    }
+
+    @include media(1180) {
+      width: calc(77% - 50px);
+    }
+
+    @include media(960) {
+      width: 100%;
+    }
+
+    .slick-slide {
+      &.after {
+        .relatedlinkItem {
+          .item {
+            &::after {
+              content: "";
+              width: 1px;
+              height: 18px;
+              background-color: #c3c3c3;
+              position: absolute;
+              right: 3px;
+              bottom: 0px;
+            }
+          }
+        }
+      }
+    }
+
+    .slick-dots {
+      bottom: -80px;
+    }
+
+    .relatedlinkItem {
+      .item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+
+        @include hover {
+          .Txt {
+            .title {
+              a {
+                color: $mainColor;
+              }
+            }
+          }
+
+          .Img {
+            img {
+              transform: scale(1.05);
+            }
+          }
+        }
+
+        &::before {
+          content: "";
+          width: 1px;
+          height: 18px;
+          background-color: #c3c3c3;
+          position: absolute;
+          left: 0;
+          bottom: 0px;
+        }
+
+        // &::after {
+        //     content: '';
+        //     width: 1px;
+        //     height: 18px;
+        //     background-color: #c3c3c3;
+        //     position: absolute;
+        //     right: 2px;
+        //     bottom: 0px;
+        //     opacity: 0;
+
+        //     @include media(640) {
+        //         opacity: 1;
+        //     }
+        // }
+
+        .Img {
+          width: 115px;
+          height: 115px;
+          background-color: #fff;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          @extend %ts;
+
+          @include media(1180) {
+            width: 100px;
+            height: 100px;
+          }
+
+          img {
+            @extend %ts;
+          }
+        }
+
+        .Txt {
+          margin-top: 30px;
+          font-size: 18px;
+          font-weight: 500;
+          color: #333;
+
+          @include media(1300) {
+            font-size: 16px;
+          }
+
+          @include media(1180) {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}
